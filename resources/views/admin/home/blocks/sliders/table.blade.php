@@ -54,9 +54,6 @@
           <td colspan="6" class="text-center text-muted py-4">
             <i class="bi bi-inbox fs-1 d-block mb-2"></i>
             <p class="mb-0">No hay sliders todavía.</p>
-            <a href="{{ route('admin.sliders.create') }}" class="btn btn-sm btn-primary mt-2">
-              <i class="bi bi-plus-circle me-1"></i>Crear primer slider
-            </a>
           </td>
         </tr>
       @endforelse
