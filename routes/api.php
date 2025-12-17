@@ -1,0 +1,36 @@
+<?php
+
+use App\Http\Controllers\Api\ApiAuthController;
+use App\Http\Controllers\Api\ApiHomeSliderController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+*/
+
+// Rutas de autenticación (sin protección)
+Route::prefix('auth')->group(function () {
+    Route::post('/login', [ApiAuthController::class, 'login']);
+});
+
+// Rutas protegidas por autenticación Sanctum
+Route::middleware('auth:sanctum')->group(function () {
+    
+    // Auth routes
+    Route::prefix('auth')->group(function () {
+        Route::post('/logout', [ApiAuthController::class, 'logout']);
+        Route::post('/logout-all', [ApiAuthController::class, 'logoutAll']);
+        Route::get('/me', [ApiAuthController::class, 'me']);
+    });
+
+    // Home
+    Route::prefix('home')->group(function () {
+        // Sliders del home
+        Route::get('/sliders', [ApiHomeSliderController::class, 'index']);
+        Route::get('/sliders/{homeSlider}', [ApiHomeSliderController::class, 'show']);
+    });
+    
+});
