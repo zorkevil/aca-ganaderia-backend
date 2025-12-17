@@ -35,4 +35,12 @@ return [
         ],
     ],
 
+    'mag' => [
+        'base_url' => env('MAG_BASE_URL', 'https://api.mercadoagroganadero.com.ar'),
+        'user' => env('MAG_USER'),
+        'password' => env('MAG_PASSWORD'),
+        'timeout' => (int) env('MAG_TIMEOUT', 10),
+        'verify_ssl' => filter_var(env('MAG_VERIFY_SSL', true), FILTER_VALIDATE_BOOLEAN),
+    ],
+
 ];

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ApiAuthController;
 use App\Http\Controllers\Api\ApiHomeSliderController;
+use App\Http\Controllers\Api\MagController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,5 +33,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/sliders', [ApiHomeSliderController::class, 'index']);
         Route::get('/sliders/{homeSlider}', [ApiHomeSliderController::class, 'show']);
     });
+
+    Route::get('/mag/precios', [MagController::class, 'precios']);
     
 });
