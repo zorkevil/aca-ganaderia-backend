@@ -7,5 +7,4 @@ Schedule::job(new SyncMagPreciosCategorias())
     ->timezone('America/Argentina/Buenos_Aires')
     ->days(['tuesday', 'wednesday', 'friday'])
     ->at('12:00')
-    ->withoutOverlapping()
-    ->runInBackground();
+    ->withoutOverlapping();
