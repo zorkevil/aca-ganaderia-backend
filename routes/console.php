@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schedule;
 
 Schedule::job(new SyncMagPreciosCategorias())
     ->timezone('America/Argentina/Buenos_Aires')
-    ->daysOfWeek([2, 3, 5]) // Martes, Miércoles, Viernes
+    ->days(['tuesday', 'wednesday', 'friday'])
     ->at('12:00')
     ->withoutOverlapping()
     ->runInBackground();
