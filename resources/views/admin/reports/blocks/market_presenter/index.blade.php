@@ -19,7 +19,9 @@
         <div class="accordion-body">
             <div class="mb-4 d-flex flex-column-reverse flex-md-row gap-3">
                 <div class="">
-                  <img src="{{ $marketPresenter->getImageUrlAttribute() }}" alt="Icono actual" style="max-height: 150px;">
+                  @if($marketPresenter->image_path)
+                      <img src="{{ $marketPresenter->image_url }}" alt="{{ $marketPresenter->alt }}" style="max-height: 150px;">
+                  @endif
                 </div>
                 <div class="d-flex align-items-start justify-content-between gap-3 flex-grow-1">
                     <div class="mb-0" id="textoMarketPresenter">

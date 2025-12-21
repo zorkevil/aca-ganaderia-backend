@@ -16,6 +16,10 @@ class ReportController extends Controller
     {
         $marketPresenter = MarketPresenter::query()->first();
 
+        if (!$marketPresenter) {
+            $marketPresenter = MarketPresenter::create();
+        }
+
         $reports = Report::latest('date')
             ->paginate(config('pagination.reports'))
             ->withQueryString();
