@@ -2,40 +2,52 @@
   <table class="table table-hover align-middle">
     <thead>
       <tr>
-        <th scope="col">N° de orden</th>
-        <th scope="col">Texto</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Título</th>
         <th scope="col">Imagen</th>
         <th scope="col">ALT de la imagen</th>
+        <th scope="col">Link</th>
         <th scope="col">Estado</th>
         <th scope="col" class="col-actions">Acciones</th>
       </tr>
     </thead>
     <tbody>
 
-      @forelse($sliders as $slider)
+      @forelse($reports as $report)
         <tr>
-          <td>{{ $slider->sort_order }}</td>
-          
-          <td>{!! Str::words($slider->text, 10, '...') ?? '-' !!}</td>
+          <td>{{ \Carbon\Carbon::parse($report->date)->format('d/m/Y') }}</td>
+
+          <td>{{ Str::limit($report->title, 50) }}</td>
 
           <td>
-            @if($slider->image_path)
-              <img src="{{ $slider->getImageUrlAttribute() }}"
-                  alt="{{ $slider->alt }}"
+            @if($report->image_url)
+              <img src="{{ $report->image_url }}"
+                  alt="{{ $report->title }}"
                   class="img-thumbnail"
                   style="object-fit: cover; cursor: pointer;"
                   loading="lazy"
                   data-bs-toggle="modal"
-                  data-bs-target="#imageModal{{ $slider->id }}">
+                  data-bs-target="#imageModal{{ $report->id }}">
             @else
               <span class="text-muted">Sin imagen</span>
             @endif
           </td>
 
-          <td>{{ Str::limit($slider->alt, 40) }}</td>
+          <td>{{ Str::limit($report->alt, 60) }}</td>
 
           <td>
-            @if($slider->is_active)
+            @if($report->link)
+              <a href="{{ $report->link }}" target="_blank" rel="noopener noreferrer" class="text-truncate d-inline-block">
+                {{ Str::limit($report->link, 40) }}
+                <i class="bi bi-box-arrow-up-right ms-1"></i>
+              </a>
+            @else
+              <span class="text-muted">-</span>
+            @endif
+          </td>
+
+          <td>
+            @if($report->is_active)
               <span class="badge text-color-3 bg-color-4">
                 <i class="bi bi-check-circle me-1"></i>Activo
               </span>
@@ -47,14 +59,14 @@
           </td>
 
           <td class="col-actions">
-            @include('admin.home.blocks.sliders.row-actions', ['slider' => $slider])
+            @include('admin.reports.blocks.lists.row-actions', ['report' => $report])
           </td>
         </tr>
       @empty
         <tr>
           <td colspan="6" class="text-center text-muted py-4">
             <i class="bi bi-inbox fs-1 d-block mb-2"></i>
-            <p class="mb-0">No hay sliders todavía.</p>
+            <p class="mb-0">No hay informes todavía.</p>
           </td>
         </tr>
       @endforelse
@@ -63,5 +75,7 @@
   </table>
 </div>
 
-{{-- Modales de imágenes --}}
-@include('admin.home.blocks.sliders.image-modals', ['sliders' => $sliders])
+{{-- Links de paginación --}}
+<div class="mt-3">
+  {{ $reports->links() }}
+</div>

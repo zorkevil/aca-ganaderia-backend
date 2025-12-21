@@ -23,6 +23,13 @@
         </a>
       </li>
 
+      <li class="sidebar-item {{ request()->routeIs('admin.reports.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.reports.index') }}" class="sidebar-link">
+          <i class="bi bi-file-earmark-text icon-24"></i>
+          <span class="sidebar-text">Informes</span>
+        </a>
+      </li>
+
       <li class="sidebar-item">
         <a href="#" class="sidebar-link">
           <i class="bi bi-people icon-24"></i>

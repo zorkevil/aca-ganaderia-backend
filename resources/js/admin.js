@@ -7,6 +7,7 @@ import initSidebar from './admin/layout/sidebar';
 import initAccordionTabs from './admin/layout/tabs';
 
 import initEditSliderModal from './admin/home/sliders/edit-modal';
+import { initEditReportModal, initEditMarketPresenterModal } from './admin/reports/edit-modal';
 
 import initDeleteModal from './admin/shared/delete-modal';
 
@@ -18,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initQuillBasic();
 
   initEditSliderModal();
+  initEditMarketPresenterModal();
+  initEditReportModal();
 
   initDeleteModal();
 });

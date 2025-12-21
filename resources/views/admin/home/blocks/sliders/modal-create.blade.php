@@ -10,7 +10,7 @@
             <form method="POST" action="{{ route('admin.home.sliders.store') }}" enctype="multipart/form-data" novalidate>
                 @csrf
                 <div class="modal-body">
-                    <div class="mb-3 form-floating">
+                    <div class="mb-3 rich-text-field">
                         <div class="js-quill-basic"
                             class="form-control" 
                             data-input-name="text"
@@ -68,8 +68,8 @@
                 </div>
 
                 <div class="modal-footer">
-                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
             </form>
         </div>

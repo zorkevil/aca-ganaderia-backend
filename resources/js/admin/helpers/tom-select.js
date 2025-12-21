@@ -8,16 +8,14 @@ export function initTomSelect(context = document) {
     if (selectElement.tomselect) return;
 
     const config = {
-      allowEmptyOption: true,
+      allowEmptyOption: false, // Cambiado a false para evitar problemas
+      placeholder: selectElement.dataset.placeholder || '', // Permite placeholder desde data-attribute
       controlInput: null,
       render: {
         item(data, escape) {
           return '<div>' + escape(data.text) + '</div>';
         },
         option(data, escape) {
-          if (data.value === '') {
-            return '<div style="display:none;"></div>';
-          }
           return '<div>' + escape(data.text) + '</div>';
         }
       }
@@ -25,19 +23,28 @@ export function initTomSelect(context = document) {
 
     const tomSelectInstance = new TomSelect(selectElement, config);
 
+    // Manejo de form-floating
     const formFloating = selectElement.closest('.form-floating');
     if (formFloating) {
       setTimeout(() => {
         const updateLabelState = (value) => {
-          if (!value) {
+          if (!value || value === '') {
             formFloating.classList.add('no-value');
           } else {
             formFloating.classList.remove('no-value');
           }
         };
 
+        // Estado inicial
         updateLabelState(tomSelectInstance.getValue());
+        
+        // Actualizar en cambios
         tomSelectInstance.on('change', updateLabelState);
+        
+        // Actualizar cuando se limpia el select
+        tomSelectInstance.on('clear', () => {
+          formFloating.classList.add('no-value');
+        });
       }, 100);
     }
   });

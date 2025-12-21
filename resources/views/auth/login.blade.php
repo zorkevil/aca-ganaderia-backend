@@ -3,7 +3,7 @@
 @section('title', 'Iniciar Sesión | ACA Ganadería')
 
 @section('content')
-<div class="container-fluid vh-100">
+<div class="container-fluid svh-100">
   <div class="row h-100">
 
     {{-- Columna izquierda --}}

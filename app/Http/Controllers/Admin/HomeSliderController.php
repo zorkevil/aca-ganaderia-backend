@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreHomeSliderRequest;
-use App\Http\Requests\Admin\UpdateHomeSliderRequest;
 use App\Models\HomeSlider;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Home\Sliders\StoreHomeSliderRequest;
+use App\Http\Requests\Admin\Home\Sliders\UpdateHomeSliderRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 

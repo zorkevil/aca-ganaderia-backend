@@ -1,0 +1,24 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    public function up(): void
+    {
+        Schema::create('market_presenters', function (Blueprint $table) {
+            $table->id();
+            $table->longText('description')->nullable();
+            $table->string('image_path')->nullable();
+            $table->string('alt', 125)->nullable();
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('market_presenters');
+    }
+};
+

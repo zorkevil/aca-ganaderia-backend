@@ -1,5 +1,5 @@
 @foreach($sliders as $slider)
-  @if($slider->image_url)
+  @if($slider->getImageUrlAttribute())
     <div class="modal fade" id="imageModal{{ $slider->id }}" tabindex="-1" aria-labelledby="imageModalLabel{{ $slider->id }}" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
@@ -8,7 +8,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
           </div>
           <div class="modal-body text-center">
-            <img src="{{ $slider->image_url }}" alt="{{ $slider->alt }}" class="img-fluid">
+            <img src="{{ $slider->getImageUrlAttribute() }}" alt="{{ $slider->alt }}" class="img-fluid">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
