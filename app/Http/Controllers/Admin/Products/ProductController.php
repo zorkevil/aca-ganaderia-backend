@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\Products\UpdateProductRequest;
 use App\Models\Product;
 use App\Models\GeneralCategory;
 use App\Models\Category;
+use App\Models\Subcategory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,6 +29,14 @@ class ProductController extends Controller
             ->orderBy('name')
             ->get();
 
+        // Subcategorías de Sanidad (derivadas de sus categorías)
+        $subcategoriesSanidad = Subcategory::whereIn(
+                'category_id',
+                $categoriesSanidad->pluck('id')
+            )
+            ->orderBy('name')
+            ->get();
+
         // Listado de productos
         $products = Product::with([
                 'generalCategory',
@@ -43,9 +52,11 @@ class ProductController extends Controller
             'nutritionId',
             'sanidadId',
             'categoriesNutrition',
-            'categoriesSanidad'
+            'categoriesSanidad',
+            'subcategoriesSanidad'
         ));
     }
+
 
     public function store(StoreProductRequest $request): RedirectResponse
     {

@@ -14,7 +14,7 @@ import initEditSubcategoryModal from './admin/configuration/subcategories/edit-m
 import initEditMainBannerModal from './admin/configuration/main-banner/edit-modal';
 import initEditNutritionServiceModal from './admin/configuration/service/edit-modal';
 import initEditContactModal from './admin/configuration/contacts/edit-modal';
-import initEditProductoNutricionModal from './admin/products/edit-modal';
+import { initEditProductoNutricionModal, initEditProductoSanidadModal } from './admin/products/edit-modal';
 import { initEditAllianceModal, initEditAllianceTextModal } from './admin/configuration/alliances/edit-modal';
 
 import initDeleteModal from './admin/shared/delete-modal';
@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initEditMainBannerModal();
   initEditNutritionServiceModal();
   initEditProductoNutricionModal();
+  initEditProductoSanidadModal();
   initEditContactModal();
   initEditAllianceModal();
   initEditAllianceTextModal();

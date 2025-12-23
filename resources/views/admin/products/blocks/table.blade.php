@@ -8,6 +8,7 @@
         <th scope="col">Categoría</th>
         <th scope="col">Subcategoría</th>
         <th scope="col">SKU</th>
+        <th scope="col">Estado</th>
         <th class="col-actions">Acciones</th>
       </tr>
     </thead>
@@ -37,7 +38,19 @@
 
           <td>{{ $product->subcategory->name ?? '-' }}</td>
 
-          <td>{{ $product->sku }}</td>
+          <td>{{ $product->sku }}</td>          
+
+          <td>
+            @if($product->is_active)
+              <span class="badge text-color-3 bg-color-4">
+                <i class="bi bi-check-circle me-1"></i>Activo
+              </span>
+            @else
+              <span class="badge text-color-1 bg-color-18">
+                <i class="bi bi-x-circle me-1"></i>Inactivo
+              </span>
+            @endif
+          </td>
 
           <td class="col-actions">
             @include('admin.products.blocks.row-actions', ['product' => $product])
@@ -45,7 +58,7 @@
         </tr>
       @empty
         <tr>
-          <td colspan="6" class="text-center text-muted py-4">
+          <td colspan="8" class="text-center text-muted py-4">
             <i class="bi bi-inbox fs-1 d-block mb-2"></i>
             <p class="mb-0">No hay productos todavía.</p>
           </td>
@@ -56,6 +69,7 @@
   </table>
 </div>
 
+{{-- Links de paginación --}}
 <div class="mt-3">
-  {{ $products->links() }}
+    {{ $products->links('vendor.pagination.bootstrap') }}
 </div>

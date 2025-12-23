@@ -20,6 +20,11 @@
 @include('admin.partials.flash')
 
 {{-- BLOQUE: PRODUCTOS --}}
-@include('admin.products.blocks.index', ['products' => $products, 'categoriesNutrition' => $categoriesNutrition])
+@include('admin.products.blocks.index', [
+  'products' => $products, 
+  'categoriesNutrition' => $categoriesNutrition,
+  'categoriesSanidad' => $categoriesSanidad,
+  'subcategoriesSanidad' => $subcategoriesSanidad,
+])
 
 @endsection

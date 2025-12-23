@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\ApiContactController;
 use App\Http\Controllers\Api\ApiServiceController;
 use App\Http\Controllers\Api\ApiAllianceController;
 use App\Http\Controllers\Api\ApiGeneralCategoryController;
+use App\Http\Controllers\Api\ApiProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -62,6 +63,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //Servicios Principales     
     Route::get('/general-categories', [ApiGeneralCategoryController::class, 'index']);
+
+    //Productos 
+    Route::get('/products', [ApiProductController::class, 'index']);
+    Route::get('/products/{slug}', [ApiProductController::class, 'show']);
 
     //MAG
     Route::get('/mag/precios', [MagController::class, 'precios']);

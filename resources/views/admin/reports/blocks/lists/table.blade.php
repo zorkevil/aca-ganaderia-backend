@@ -77,5 +77,5 @@
 
 {{-- Links de paginación --}}
 <div class="mt-3">
-  {{ $reports->links() }}
+    {{ $reports->links('vendor.pagination.bootstrap') }}
 </div>

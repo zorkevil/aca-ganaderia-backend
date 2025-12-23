@@ -47,4 +47,18 @@ class UpdateProductRequest extends FormRequest
             'image_alt' => ['required', 'string', 'max:125'],
         ];
     }
+    
+    protected function prepareForValidation()
+    {
+        if ($this->has('especie_animal')) {
+
+            $especies = array_map(function ($especie) {
+                return ucfirst(strtolower($especie));
+            }, (array) $this->especie_animal);
+
+            $this->merge([
+                'especie_animal' => implode(', ', $especies),
+            ]);
+        }
+    }
 }

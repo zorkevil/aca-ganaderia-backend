@@ -44,4 +44,4 @@
 @include('admin.products.blocks.modal-create-nutrition')
 @include('admin.products.blocks.modal-create-sanidad')
 @include('admin.products.blocks.modal-edit-nutrition')
-@include('admin.products.blocks.modal-create-sanidad')
+@include('admin.products.blocks.modal-edit-sanidad')

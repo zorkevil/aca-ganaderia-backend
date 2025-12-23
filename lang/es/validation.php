@@ -178,6 +178,7 @@ return [
         'date' => 'fecha',
         'category_id' => 'categoría',
         'general_category_id' => 'servicio principal',
-        'phone' => 'teléfono'
+        'phone' => 'teléfono',
+        'image_alt' => 'texto alternativo de la imagen'
     ],
 ];

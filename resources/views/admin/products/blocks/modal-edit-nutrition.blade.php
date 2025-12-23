@@ -20,7 +20,7 @@
 
             {{-- Nombre comercial --}}
             <div class="mb-3 form-floating">
-              <input type="text" name="name" id="editName" class="form-control" required>
+              <input type="text" name="name" id="editName" class="form-control" placeholder="Nombre comercial" required>
               <label>Nombre comercial</label>
             </div>
 
@@ -28,13 +28,13 @@
             <div class="row">
               <div class="col-6 mb-3">
                 <div class="form-floating">
-                  <input type="text" name="title" id="editTitle" class="form-control">
+                  <input type="text" name="title" id="editTitle" class="form-control" placeholder="Título">
                   <label>Título</label>
                 </div>
               </div>
               <div class="col-6 mb-3">
                 <div class="form-floating">
-                  <input type="text" name="subtitle" id="editSubtitle" class="form-control">
+                  <input type="text" name="subtitle" id="editSubtitle" class="form-control" placeholder="Subtítulo">
                   <label>Subtítulo</label>
                 </div>
               </div>
@@ -44,13 +44,13 @@
             <div class="row">
               <div class="col-6 mb-3">
                 <div class="form-floating">
-                  <input type="text" name="slug" id="editSlug" class="form-control" required>
+                  <input type="text" name="slug" id="editSlug" class="form-control" placeholder="Slug" required>
                   <label>Slug</label>
                 </div>
               </div>
               <div class="col-6 mb-3">
                 <div class="form-floating">
-                  <input type="text" name="sku" id="editSku" class="form-control" required>
+                  <input type="text" name="sku" id="editSku" class="form-control" placeholder="SKU" required>
                   <label>SKU</label>
                 </div>
               </div>
@@ -71,7 +71,7 @@
 
             {{-- ALT --}}
             <div class="mb-3 form-floating">
-              <input type="text" name="image_alt" id="editImageAlt" class="form-control">
+              <input type="text" name="image_alt" id="editImageAlt" class="form-control" placeholder="ALT de la imagen">
               <label>ALT de la imagen</label>
             </div>
 
