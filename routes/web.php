@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\Sections\NutritionController;
 use App\Http\Controllers\Admin\Sections\SanidadController;
 use App\Http\Controllers\Admin\Sections\ProductionController;
 use App\Http\Controllers\Admin\Sections\HaciendaController;
+use App\Http\Controllers\Admin\Sections\ContactFormController;
 use App\Http\Controllers\Admin\Configuration\AllianceTextController;
 use App\Http\Controllers\Admin\Configuration\AllianceController;
 use Illuminate\Support\Facades\Route;
@@ -168,6 +169,9 @@ Route::middleware(['auth'])
 
         Route::get('/hacienda', [HaciendaController::class, 'index'])
             ->name('sections.hacienda.index');
+
+        Route::get('/contacto', [ContactFormController::class, 'index'])
+            ->name('sections.contact.index');    
     });
 
 require __DIR__.'/auth.php';

@@ -97,6 +97,13 @@
         </a>
       </li>
 
+      <li class="sidebar-item {{ request()->routeIs('admin.sections.contact.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.sections.contact.index') }}" class="sidebar-link">
+          <i class="bi bi-envelope icon-24"></i>
+          <span class="sidebar-text">Contacto</span>
+        </a>
+      </li>
+
       <li class="sidebar-item">
         <a href="#" class="sidebar-link">
           <i class="bi bi-people icon-24"></i>

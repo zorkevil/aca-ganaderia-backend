@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Reports;
 
 use App\Models\Report;
 use App\Models\MarketPresenter;
+use App\Models\MainBanner;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Reports\StoreReportRequest;
 use App\Http\Requests\Admin\Reports\UpdateReportRequest;
@@ -14,6 +15,21 @@ class ReportController extends Controller
 {
     public function index()
     {
+        // Identificador único de la sección
+        $section = 'informes';
+
+        /**
+         * Banner principal
+         * Se crea automáticamente si no existe
+         */
+        $banner = MainBanner::firstOrCreate(
+            ['section' => $section],
+            [
+                'image_path' => null,
+                'image_alt'  => '',
+            ]
+        );
+
         $marketPresenter = MarketPresenter::query()->first();
 
         if (!$marketPresenter) {
@@ -24,7 +40,12 @@ class ReportController extends Controller
             ->paginate(config('pagination.reports'))
             ->withQueryString();
 
-        return view('admin.reports.index', compact('marketPresenter', 'reports'));
+        return view('admin.reports.index', compact(
+            'marketPresenter', 
+            'reports', 
+            'banner',            
+            'section'
+        ));
     }
 
     public function store(StoreReportRequest $request): RedirectResponse

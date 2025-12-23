@@ -19,6 +19,9 @@
   {{-- Mensajes --}}
   @include('admin.partials.flash')
 
+  {{-- BLOQUE: BANNER PRINCIPAL --}}
+  @include('admin.configuration.blocks.main_banner.index', ['banner' => $banner])
+
   {{-- BLOQUE: PRESENTACIÓN INFORMES --}}
   @include('admin.reports.blocks.market_presenter.index', ['marketPresenter' => $marketPresenter])
 
