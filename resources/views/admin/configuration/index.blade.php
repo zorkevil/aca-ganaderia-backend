@@ -28,6 +28,12 @@
   {{-- BLOQUE: SUBCATEGORIAS DE PRODUCTOS --}}
   @include('admin.configuration.blocks.subcategory.index', ['subcategories' => $subcategories])
 
+  {{-- BLOQUE: MODALIDADES DE REMATES --}}
+  @include('admin.configuration.blocks.auction_modality.index', ['auctionModalities' => $auctionModalities])
+
+  {{-- BLOQUE: TIPOS DE REMATES --}}
+  @include('admin.configuration.blocks.auction_type.index', ['auctionTypes' => $auctionTypes])
+
   {{-- BLOQUE: CONTACTOS DE WHATSAPP --}}
   @include('admin.configuration.blocks.contacts.index', ['contacts' => $contacts])
 

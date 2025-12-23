@@ -20,6 +20,8 @@ use App\Http\Controllers\Admin\Sections\HaciendaController;
 use App\Http\Controllers\Admin\Sections\ContactFormController;
 use App\Http\Controllers\Admin\Configuration\AllianceTextController;
 use App\Http\Controllers\Admin\Configuration\AllianceController;
+use App\Http\Controllers\Admin\Configuration\AuctionTypeController;
+use App\Http\Controllers\Admin\Configuration\AuctionModalityController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -141,6 +143,20 @@ Route::middleware(['auth'])
 
                 Route::delete('/alliances/{alliance}', [AllianceController::class, 'destroy'])
                     ->name('alliances.destroy');
+
+                // TIPOS DE REMATE
+                Route::post('auction-types', [AuctionTypeController::class, 'store'])
+                    ->name('auction-types.store');
+
+                Route::put('auction-types/{auctionType}', [AuctionTypeController::class, 'update'])
+                    ->name('auction-types.update');
+
+                // MODALIDADES DE REMATE
+                Route::post('auction-modalities', [AuctionModalityController::class, 'store'])
+                    ->name('auction-modalities.store');
+
+                Route::put('auction-modalities/{auctionModality}', [AuctionModalityController::class, 'update'])
+                    ->name('auction-modalities.update');
             });
 
         //BLOQUE BANNERS PRINCIPALES

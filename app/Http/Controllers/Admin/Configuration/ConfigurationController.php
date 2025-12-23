@@ -7,6 +7,8 @@ use App\Models\GeneralCategory;
 use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Contact;
+use App\Models\AuctionType;
+use App\Models\AuctionModality;
 use Illuminate\View\View;
 
 class ConfigurationController extends Controller
@@ -25,13 +27,19 @@ class ConfigurationController extends Controller
 
         $contacts = Contact::with('generalCategory')
             ->latest('id')
-            ->get();
+            ->get();        
+
+        $auctionTypes = AuctionType::orderBy('name')->get();
+
+        $auctionModalities = AuctionModality::orderBy('name')->get();
 
         return view('admin.configuration.index', compact(
             'generalCategories',
             'categories',
             'subcategories', 
-            'contacts'
+            'contacts',
+            'auctionTypes',
+            'auctionModalities'
         ));
     }
 }
