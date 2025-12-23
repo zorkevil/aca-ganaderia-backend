@@ -104,12 +104,14 @@
         </a>
       </li>
 
+      {{--  
       <li class="sidebar-item">
         <a href="#" class="sidebar-link">
           <i class="bi bi-people icon-24"></i>
           <span class="sidebar-text">Usuarios</span>
         </a>
       </li>
+      --}}
     </ul>
   </nav>
 

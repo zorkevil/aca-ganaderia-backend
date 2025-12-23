@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\ApiMarketPresenterController;
 use App\Http\Controllers\Api\ApiMainBannerController;
 use App\Http\Controllers\Api\ApiContactController;
 use App\Http\Controllers\Api\ApiServiceController;
+use App\Http\Controllers\Api\ApiAllianceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -54,6 +55,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Servicios por sección
     Route::get('/services/{section}', [ApiServiceController::class, 'bySection']);
+
+    //Alianzas
+    Route::get('/alliances', [ApiAllianceController::class, 'index']);
 
     //MAG
     Route::get('/mag/precios', [MagController::class, 'precios']);
