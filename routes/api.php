@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\ApiHomeSliderController;
 use App\Http\Controllers\Api\ApiReportController;
 use App\Http\Controllers\Api\MagController;
 use App\Http\Controllers\Api\ApiMarketPresenterController;
+use App\Http\Controllers\Api\ApiMainBannerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Market Presenter (Informes)
     Route::get('/market-presenter', [ApiMarketPresenterController::class, 'show']);
+
+    // Main banners por sección
+    Route::get('/main-banners/{section}', [ApiMainBannerController::class, 'show']);
 
     //MAG
     Route::get('/mag/precios', [MagController::class, 'precios']);
