@@ -17,7 +17,7 @@
   <hr>
 
   {{-- Mensajes --}}
-  @include('admin.home.blocks.flash')
+  @include('admin.partials.flash')
 
   {{-- BLOQUE: SLIDER PRINCIPAL --}}
   @include('admin.home.blocks.sliders.index', ['sliders' => $sliders])

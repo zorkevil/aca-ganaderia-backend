@@ -16,10 +16,77 @@
   <nav class="sidebar-nav">
     <ul class="sidebar-menu">
 
-      <li class="sidebar-item {{ request()->routeIs('admin.home.*') ? 'active' : '' }}">
+      <li class="sidebar-item {{ request()->routeIs('admin.home') ? 'active' : '' }}">
         <a href="{{ route('admin.home') }}" class="sidebar-link">
           <i class="bi bi-house-door icon-24"></i>
           <span class="sidebar-text">Home</span>
+        </a>
+      </li>
+
+      <li class="sidebar-item {{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.products.index') }}" class="sidebar-link">
+          <i class="bi bi-box-seam icon-24"></i>
+          <span class="sidebar-text">Productos</span>
+        </a>
+      </li>
+
+      <li class="sidebar-item {{ request()->routeIs('admin.sections.nutrition.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.sections.nutrition.index') }}" class="sidebar-link">
+
+          @if(isset($sidebarSections['nutricion']) && $sidebarSections['nutricion']->icon_url)
+            <img src="{{ $sidebarSections['nutricion']->icon_url }}"
+                alt="{{ $sidebarSections['nutricion']->icon_alt }}"
+                class="icon-24">
+          @else
+            <i class="bi bi-box-seam icon-24"></i>
+          @endif
+
+          <span class="sidebar-text">Nutrición</span>
+        </a>
+      </li>
+
+      <li class="sidebar-item {{ request()->routeIs('admin.sections.sanidad.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.sections.sanidad.index') }}" class="sidebar-link">
+          
+          @if(isset($sidebarSections['sanidad']) && $sidebarSections['sanidad']->icon_url)
+            <img src="{{ $sidebarSections['sanidad']->icon_url }}"
+                alt="{{ $sidebarSections['sanidad']->icon_alt }}"
+                class="icon-24">
+          @else
+            <i class="bi bi-box-seam icon-24"></i>
+          @endif
+
+          <span class="sidebar-text">Sanidad</span>
+        </a>
+      </li>
+
+      <li class="sidebar-item {{ request()->routeIs('admin.sections.hacienda.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.sections.hacienda.index') }}" class="sidebar-link">
+          
+          @if(isset($sidebarSections['hacienda']) && $sidebarSections['hacienda']->icon_url)
+            <img src="{{ $sidebarSections['hacienda']->icon_url }}"
+                alt="{{ $sidebarSections['hacienda']->icon_alt }}"
+                class="icon-24">
+          @else
+            <i class="bi bi-box-seam icon-24"></i>
+          @endif
+
+          <span class="sidebar-text">Hacienda</span>
+        </a>
+      </li>
+
+      <li class="sidebar-item {{ request()->routeIs('admin.sections.production.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.sections.production.index') }}" class="sidebar-link">
+          
+          @if(isset($sidebarSections['produccion']) && $sidebarSections['produccion']->icon_url)
+            <img src="{{ $sidebarSections['produccion']->icon_url }}"
+                alt="{{ $sidebarSections['produccion']->icon_alt }}"
+                class="icon-24">
+          @else
+            <i class="bi bi-box-seam icon-24"></i>
+          @endif
+
+          <span class="sidebar-text">Producción</span>
         </a>
       </li>
 
@@ -40,10 +107,12 @@
   </nav>
 
   <div class="sidebar-footer">
-    <a href="#" class="sidebar-footer-link">
-      <i class="bi bi-gear icon-24"></i>
-      <span class="sidebar-text">Configuración</span>
-    </a>
+    <li class="sidebar-item {{ request()->routeIs('admin.configuration.*') ? 'active' : '' }}">
+      <a href="{{ route('admin.configuration.index') }}" class="sidebar-footer-link">
+        <i class="bi bi-gear icon-24"></i>
+        <span class="sidebar-text">Configuración</span>
+      </a>
+    </li>
 
     <form class="sidebar-footer-link" method="POST" action="{{ route('logout') }}">
       @csrf

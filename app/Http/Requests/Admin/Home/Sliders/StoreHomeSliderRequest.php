@@ -25,7 +25,7 @@ class StoreHomeSliderRequest extends FormRequest
           Rule::unique('home_sliders', 'sort_order'),
       ],
       'is_active' => ['required','boolean'],
-      'image' => ['nullable','image','mimes:jpg,jpeg,webp','max:5120'], // 5MB
+      'image' => ['required','image','mimes:jpg,jpeg,webp','max:5120'], // 5MB
     ];
   }
 }

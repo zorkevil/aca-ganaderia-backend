@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-            HomeSliderSeeder::class,
+            HomeSliderSeeder::class,            
+            MainBannerSeeder::class,
         ]);
     }
 }

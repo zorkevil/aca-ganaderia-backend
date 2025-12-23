@@ -1,5 +1,4 @@
 <div class="d-flex flex-column gap-3">
-
   <div class="accordion" id="accordionReport">
     <div class="accordion-item">
 

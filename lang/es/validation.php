@@ -150,9 +150,34 @@ return [
     'string'                 => 'El campo :attribute debe ser una cadena de caracteres.',
     'timezone'               => 'El campo :attribute debe ser una zona horaria válida.',
     'ulid'                   => 'El campo :attribute debe ser un ULID válido.',
-    'unique'                 => 'El campo :attribute ya ha sido registrado.',
+    'unique'                 => 'El valor del campo :attribute ya ha sido utilizado en otro registro.',
     'uploaded'               => 'Subir :attribute ha fallado.',
     'uppercase'              => 'El campo :attribute debe estar en mayúscula.',
     'url'                    => 'El campo :attribute debe ser una URL válida.',
     'uuid'                   => 'El campo :attribute debe ser un UUID válido.',
+
+     /*
+    |--------------------------------------------------------------------------
+    | Custom Validation Attributes
+    |--------------------------------------------------------------------------
+    |
+    | Aquí definimos nombres "humanos" para los campos.
+    |
+    */
+
+    'attributes' => [
+        'text' => 'texto',
+        'alt' => 'texto alternativo de la imagen',
+        'is_active' => 'estado',
+        'sort_order' => 'orden',
+        'image' => 'imagen',
+        'name' => 'nombre',
+        'description' => 'descripción',
+        'title' => 'título',
+        'subtitle' => 'subtítulo',
+        'date' => 'fecha',
+        'category_id' => 'categoría',
+        'general_category_id' => 'servicio principal',
+        'phone' => 'teléfono'
+    ],
 ];

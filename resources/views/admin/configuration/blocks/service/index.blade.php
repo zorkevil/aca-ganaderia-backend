@@ -1,0 +1,40 @@
+<div class="accordion" id="accordionNutritionServices">
+  <div class="accordion-item">
+
+    <h2 class="accordion-header">
+      <button class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseNutritionServices"
+              aria-expanded="true">
+        Servicios
+      </button>
+    </h2>
+
+    <div id="collapseNutritionServices"
+         class="accordion-collapse collapse show"
+         data-bs-parent="#accordionNutritionServices">
+
+      <div class="accordion-body">
+
+        @include('admin.configuration.blocks.service.table', [
+            'services' => $services
+          ])
+
+        <div class="mt-3 text-center">
+          <button type="button" class="btn btn-link"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalCreateNutritionService">
+            <i class="bi bi-plus-circle me-1"></i>
+            Agregar Servicio
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+@include('admin.configuration.blocks.service.modal-create')
+@include('admin.configuration.blocks.service.modal-edit')

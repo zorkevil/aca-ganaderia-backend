@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\ApiAuthController;
 use App\Http\Controllers\Api\ApiHomeSliderController;
 use App\Http\Controllers\Api\ApiReportController;
 use App\Http\Controllers\Api\MagController;
+use App\Http\Controllers\Api\ApiMarketPresenterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -39,7 +40,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/reports', [ApiReportController::class, 'index']);
     Route::get('/reports/{report}', [ApiReportController::class, 'show']);
 
+    // Market Presenter (Informes)
+    Route::get('/market-presenter', [ApiMarketPresenterController::class, 'show']);
+
     //MAG
     Route::get('/mag/precios', [MagController::class, 'precios']);
-    
 });

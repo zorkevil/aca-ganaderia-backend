@@ -8,6 +8,14 @@ import initAccordionTabs from './admin/layout/tabs';
 
 import initEditSliderModal from './admin/home/sliders/edit-modal';
 import { initEditReportModal, initEditMarketPresenterModal } from './admin/reports/edit-modal';
+import initEditGeneralCategoryModal from './admin/configuration/general-categories/edit-modal';
+import initEditCategoryModal from './admin/configuration/categories/edit-modal';
+import initEditSubcategoryModal from './admin/configuration/subcategories/edit-modal';
+import initEditMainBannerModal from './admin/configuration/main-banner/edit-modal';
+import initEditNutritionServiceModal from './admin/configuration/service/edit-modal';
+import initEditContactModal from './admin/configuration/contacts/edit-modal';
+import initEditProductoNutricionModal from './admin/products/edit-modal';
+import { initEditAllianceModal, initEditAllianceTextModal } from './admin/configuration/alliances/edit-modal';
 
 import initDeleteModal from './admin/shared/delete-modal';
 
@@ -21,6 +29,15 @@ document.addEventListener('DOMContentLoaded', () => {
   initEditSliderModal();
   initEditMarketPresenterModal();
   initEditReportModal();
+  initEditGeneralCategoryModal();
+  initEditCategoryModal();
+  initEditSubcategoryModal();
+  initEditMainBannerModal();
+  initEditNutritionServiceModal();
+  initEditProductoNutricionModal();
+  initEditContactModal();
+  initEditAllianceModal();
+  initEditAllianceTextModal();
 
   initDeleteModal();
 });

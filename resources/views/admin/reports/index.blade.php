@@ -17,9 +17,9 @@
   <hr>
 
   {{-- Mensajes --}}
-  @include('admin.reports.blocks.flash')
+  @include('admin.partials.flash')
 
-  {{-- BLOQUE: INFORMES --}}
+  {{-- BLOQUE: PRESENTACIÓN INFORMES --}}
   @include('admin.reports.blocks.market_presenter.index', ['marketPresenter' => $marketPresenter])
 
   {{-- BLOQUE: INFORMES --}}
