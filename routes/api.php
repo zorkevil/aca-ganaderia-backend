@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\ApiMainBannerController;
 use App\Http\Controllers\Api\ApiContactController;
 use App\Http\Controllers\Api\ApiServiceController;
 use App\Http\Controllers\Api\ApiAllianceController;
+use App\Http\Controllers\Api\ApiGeneralCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -47,7 +48,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // Market Presenter (Informes)
     Route::get('/market-presenter', [ApiMarketPresenterController::class, 'show']);
 
-    // Main banners por sección
+    // Main Banners por sección
     Route::get('/main-banners/{section}', [ApiMainBannerController::class, 'show']);
 
     // Contactos WhatsApp
@@ -58,6 +59,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //Alianzas
     Route::get('/alliances', [ApiAllianceController::class, 'index']);
+
+    //Servicios Principales     
+    Route::get('/general-categories', [ApiGeneralCategoryController::class, 'index']);
 
     //MAG
     Route::get('/mag/precios', [MagController::class, 'precios']);
