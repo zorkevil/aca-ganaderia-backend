@@ -22,4 +22,7 @@
   {{-- BLOQUE: BANNER PRINCIPAL --}}
   @include('admin.configuration.blocks.main_banner.index', ['banner' => $banner])
 
+  {{-- BLOQUE: CONTACTOS ENVIADOS --}}
+  @include('admin.sections.contact.blocks.submissions.index')
+
 @endsection
