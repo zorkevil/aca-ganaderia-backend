@@ -18,6 +18,7 @@ import { initEditProductoNutricionModal, initEditProductoSanidadModal } from './
 import { initEditAllianceModal, initEditAllianceTextModal } from './admin/configuration/alliances/edit-modal';
 import initEditAuctionModalityModal from './admin/configuration/auction-modality/edit-modal';
 import initEditAuctionTypeModal from './admin/configuration/auction-type/edit-modal';
+import { initEditAuctionModal, initEditAuctionTextModal } from './admin/configuration/auctions/edit-modal';
 
 import initDeleteModal from './admin/shared/delete-modal';
 
@@ -43,6 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initEditAllianceTextModal();
   initEditAuctionModalityModal();
   initEditAuctionTypeModal();
+  initEditAuctionModal();
+  initEditAuctionTextModal();
 
   initDeleteModal();
 });

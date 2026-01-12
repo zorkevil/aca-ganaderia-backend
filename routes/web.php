@@ -22,6 +22,8 @@ use App\Http\Controllers\Admin\Configuration\AllianceTextController;
 use App\Http\Controllers\Admin\Configuration\AllianceController;
 use App\Http\Controllers\Admin\Configuration\AuctionTypeController;
 use App\Http\Controllers\Admin\Configuration\AuctionModalityController;
+use App\Http\Controllers\Admin\Configuration\AuctionController;
+use App\Http\Controllers\Admin\Configuration\AuctionTextController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -157,6 +159,22 @@ Route::middleware(['auth'])
 
                 Route::put('auction-modalities/{auctionModality}', [AuctionModalityController::class, 'update'])
                     ->name('auction-modalities.update');
+
+                // REMATES
+                Route::post('/auctions', [AuctionController::class, 'store'])
+                    ->name('auctions.store');
+
+                Route::put('/auctions/{auction}', [AuctionController::class, 'update'])
+                    ->name('auctions.update');
+
+                Route::delete('/auctions/{auction}', [AuctionController::class, 'destroy'])
+                    ->name('auctions.destroy');
+
+                // TEXTO REMATES
+                Route::put(
+                    '/auctions/text/{auctionText}',
+                    [AuctionTextController::class, 'update']
+                )->name('auctions.text.update');
             });
 
         //BLOQUE BANNERS PRINCIPALES

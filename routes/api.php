@@ -13,6 +13,9 @@ use App\Http\Controllers\Api\ApiGeneralCategoryController;
 use App\Http\Controllers\Api\ApiProductController;
 use App\Http\Controllers\Api\ApiCategoryController;
 use App\Http\Controllers\Api\ApiSubcategoryController;
+use App\Http\Controllers\Api\ApiAuctionController;
+use App\Http\Controllers\Api\ApiAuctionModalityController;
+use App\Http\Controllers\Api\ApiAuctionTypeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -75,6 +78,15 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //Subcategorias de Productos
     Route::get('/subcategories', [ApiSubcategoryController::class, 'index']);
+
+    //Remates
+    Route::get('/auctions', [ApiAuctionController::class, 'index']);
+
+    //Modalidades de Remates
+    Route::get('/auctions-modalities', [ApiAuctionModalityController::class, 'index']);
+
+    //Tipos de Remates
+    Route::get('/auctions-types', [ApiAuctionTypeController::class, 'index']);
 
     //MAG
     Route::get('/mag/precios', [MagController::class, 'precios']);
