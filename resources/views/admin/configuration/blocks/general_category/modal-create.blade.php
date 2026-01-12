@@ -34,7 +34,6 @@
           </div>
 
           <div class="row"> 
-
             <div class="col-6 mb-3">
               <div class="form-floating">
                 <input type="text" class="form-control" name="slug" id="slugGeneralCategories" placeholder="Slug" required>

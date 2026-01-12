@@ -33,6 +33,8 @@ class ApiProductController extends Controller
         );
         */
 
+        $query->orderBy('sku', 'asc');
+
         $products = $query->get();
 
         return ProductResource::collection($products);

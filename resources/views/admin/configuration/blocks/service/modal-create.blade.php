@@ -11,7 +11,7 @@
             enctype="multipart/form-data" novalidate>
         @csrf
 
-        <input type="hidden" name="section" value="nutricion">     
+        <input type="hidden" name="section" value="{{ $section }}">     
 
         <div class="modal-body">
           <div class="form-floating mb-3">
