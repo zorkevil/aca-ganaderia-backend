@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\ApiSubcategoryController;
 use App\Http\Controllers\Api\ApiAuctionController;
 use App\Http\Controllers\Api\ApiAuctionModalityController;
 use App\Http\Controllers\Api\ApiAuctionTypeController;
+use App\Http\Controllers\Api\ApiContactFormController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -87,6 +88,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //Tipos de Remates
     Route::get('/auctions-types', [ApiAuctionTypeController::class, 'index']);
+
+    // Formulario de contacto (desde Next)
+    Route::post('/contacts', [ApiContactFormController::class, 'store']);
 
     //MAG
     Route::get('/mag/precios', [MagController::class, 'precios']);
