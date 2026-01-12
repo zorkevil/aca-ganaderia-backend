@@ -11,6 +11,8 @@ use App\Http\Controllers\Api\ApiServiceController;
 use App\Http\Controllers\Api\ApiAllianceController;
 use App\Http\Controllers\Api\ApiGeneralCategoryController;
 use App\Http\Controllers\Api\ApiProductController;
+use App\Http\Controllers\Api\ApiCategoryController;
+use App\Http\Controllers\Api\ApiSubcategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -67,6 +69,12 @@ Route::middleware('auth:sanctum')->group(function () {
     //Productos 
     Route::get('/products', [ApiProductController::class, 'index']);
     Route::get('/products/{slug}', [ApiProductController::class, 'show']);
+    
+    //Categorias de Productos
+    Route::get('/categories', [ApiCategoryController::class, 'index']);
+
+    //Subcategorias de Productos
+    Route::get('/subcategories', [ApiSubcategoryController::class, 'index']);
 
     //MAG
     Route::get('/mag/precios', [MagController::class, 'precios']);
