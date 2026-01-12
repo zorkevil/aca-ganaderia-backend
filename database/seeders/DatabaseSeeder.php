@@ -23,6 +23,14 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('admin123'),
         ]);
 
+        User::factory()->create([
+            'name' => 'Aideas',
+            'email' => 'marketing@aideas.com.ar',
+            'is_admin' => true,
+            'is_creador' => true,
+            'password' => Hash::make('creador123'),
+        ]);
+
         $this->call([
             HomeSliderSeeder::class,            
             MainBannerSeeder::class,
