@@ -4,11 +4,10 @@
         title="Editar"
         data-bs-toggle="modal"
         data-bs-target="#modalEditAuctionType"
-        data-id="{{ $item->id }}"
-        data-name="{{ $item->name }}"
-        data-slug="{{ $item->slug }}"
-        data-description="{{ $item->description }}"
-        data-icon_alt="{{ $item->icon_alt }}"
-        data-is_active="{{ $item->is_active ? 1 : 0 }}">
+        data-id="{{ $auctionType->id }}"
+        data-name="{{ $auctionType->name }}"
+        data-slug="{{ $auctionType->slug }}"
+        data-icon_alt="{{ $auctionType->icon_alt }}"
+        data-is_active="{{ $auctionType->is_active ? 1 : 0 }}">
   <i class="bi bi-pencil"></i>
 </button>

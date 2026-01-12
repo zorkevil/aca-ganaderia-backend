@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin\Configuration;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\AuctionType\StoreAuctionTypeRequest;
-use App\Http\Requests\Admin\AuctionType\UpdateAuctionTypeRequest;
+use App\Http\Requests\Admin\Configuration\AuctionType\StoreAuctionTypeRequest;
+use App\Http\Requests\Admin\Configuration\AuctionType\UpdateAuctionTypeRequest;
 use App\Models\AuctionType;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
