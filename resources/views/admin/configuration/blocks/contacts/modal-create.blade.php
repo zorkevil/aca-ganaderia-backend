@@ -8,8 +8,7 @@
       </div>
 
       <form method="POST"
-            action="{{ route('admin.configuration.contacts.store') }}"
-            novalidate>
+            action="{{ route('admin.configuration.contacts.store') }}">
         @csrf
 
         <div class="modal-body">

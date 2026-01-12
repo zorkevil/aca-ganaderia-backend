@@ -12,9 +12,7 @@
                 method="POST"
                 action="{{ route('admin.configuration.alliances.text.update', $allianceText) }}"
                 data-action-template="{{ route('admin.configuration.alliances.text.update', $allianceText) }}"
-                enctype="multipart/form-data"
-                novalidate
-            >
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 

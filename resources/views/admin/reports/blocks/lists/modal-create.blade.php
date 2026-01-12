@@ -7,7 +7,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
             </div>
 
-            <form method="POST" action="{{ route('admin.reports.store') }}" enctype="multipart/form-data" novalidate>
+            <form method="POST" action="{{ route('admin.reports.store') }}" enctype="multipart/form-data">
                 @csrf            
                 <div class="modal-body">
                     <div class="mb-3 form-floating">

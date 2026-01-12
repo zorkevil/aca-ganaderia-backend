@@ -13,9 +13,7 @@
           method="POST"
           action=""
           enctype="multipart/form-data"
-          data-action-template="{{ route('admin.products.update', '__ID__') }}"
-          novalidate
-        >
+          data-action-template="{{ route('admin.products.update', '__ID__') }}">
           @csrf
           @method('PUT')
 

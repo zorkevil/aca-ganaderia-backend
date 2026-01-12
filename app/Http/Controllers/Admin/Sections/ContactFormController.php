@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Sections;
 
 use App\Http\Controllers\Controller;
 use App\Models\MainBanner;
+use App\Models\ContactForm;
 use Illuminate\View\View;
 
 class ContactFormController extends Controller
@@ -25,9 +26,14 @@ class ContactFormController extends Controller
             ]
         );     
 
+        $submissions = ContactForm::orderByDesc('id')
+            ->paginate(config('pagination.contacts'))
+            ->withQueryString();
+
         return view('admin.sections.contact.index', compact(
             'section',
-            'banner'
+            'banner',
+            'submissions'
         ));
     }
 }

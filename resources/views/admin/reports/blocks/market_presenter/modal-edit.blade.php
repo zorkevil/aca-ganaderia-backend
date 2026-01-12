@@ -12,9 +12,7 @@
                 method="POST"
                 action="{{ route('admin.market-presenter.update', ['marketPresenter' => '__ID__']) }}"
                 data-action-template="{{ route('admin.market-presenter.update', ['marketPresenter' => '__ID__']) }}"
-                enctype="multipart/form-data"
-                novalidate
-            >
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 

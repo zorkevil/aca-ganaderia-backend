@@ -49,7 +49,7 @@
                     @endif
 
                     {{-- Formulario --}}
-                    <form method="POST" action="{{ route('password.email') }}" class="needs-validation" novalidate>
+                    <form method="POST" action="{{ route('password.email') }}" class="needs-validation">
                         @csrf
 
                         {{-- Campo Email --}}

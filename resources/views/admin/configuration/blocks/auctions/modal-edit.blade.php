@@ -13,9 +13,7 @@
                 method="POST"
                 action="{{ route('admin.configuration.auctions.update', ['auction' => '__ID__']) }}"
                 data-action-template="{{ route('admin.configuration.auctions.update', ['auction' => '__ID__']) }}"
-                enctype="multipart/form-data"
-                novalidate
-            >
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 

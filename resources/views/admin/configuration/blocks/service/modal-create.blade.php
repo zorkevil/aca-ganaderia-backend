@@ -8,7 +8,7 @@
       </div>
       <form method="POST"
             action="{{ route('admin.sections.services.store', $section) }}"
-            enctype="multipart/form-data" novalidate>
+            enctype="multipart/form-data">
         @csrf
 
         <input type="hidden" name="section" value="{{ $section }}">     

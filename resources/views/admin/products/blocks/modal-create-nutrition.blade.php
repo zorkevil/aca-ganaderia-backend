@@ -10,8 +10,7 @@
       <div class="modal-body">
         <form method="POST"
               action="{{ route('admin.products.store') }}"
-              enctype="multipart/form-data"
-              novalidate>
+              enctype="multipart/form-data">
           @csrf
 
           <input type="hidden" name="general_category_id" value="{{ $nutritionId }}">

@@ -12,8 +12,7 @@
             id="editMainBannerForm"
             action="{{ route('admin.sections.main-banner.update', '__SECTION__') }}"
             data-action-template="{{ route('admin.sections.main-banner.update', '__SECTION__') }}"
-            enctype="multipart/form-data"
-            novalidate>
+            enctype="multipart/form-data">
         @csrf
         @method('PUT')
 

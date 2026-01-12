@@ -10,8 +10,7 @@
       <form method="POST"
             id="editContactForm"
             action="{{ route('admin.configuration.contacts.update', '__ID__') }}"
-            data-action-template="{{ route('admin.configuration.contacts.update', '__ID__') }}"
-            novalidate>
+            data-action-template="{{ route('admin.configuration.contacts.update', '__ID__') }}">
         @csrf
         @method('PUT')
 

@@ -12,9 +12,7 @@
                 method="POST"
                 action="{{ route('admin.home.sliders.update', ['homeSlider' => '__ID__']) }}"
                 data-action-template="{{ route('admin.home.sliders.update', ['homeSlider' => '__ID__']) }}"
-                enctype="multipart/form-data"
-                novalidate
-            >
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 

@@ -12,8 +12,7 @@
             id="editGeneralCategoryForm"
             action="{{ route('admin.configuration.general-categories.update', '__ID__') }}"
             data-action-template="{{ route('admin.configuration.general-categories.update', '__ID__') }}"
-            enctype="multipart/form-data"
-            novalidate>
+            enctype="multipart/form-data">
         @csrf
         @method('PUT')
 

@@ -12,8 +12,7 @@
             id="editNutritionServiceForm"
             action="{{ route('admin.sections.services.update', [$section, '__ID__']) }}"
             data-action-template="{{ route('admin.sections.services.update', [$section, '__ID__']) }}"
-            enctype="multipart/form-data"
-            novalidate>
+            enctype="multipart/form-data">
         @csrf
         @method('PUT')
 

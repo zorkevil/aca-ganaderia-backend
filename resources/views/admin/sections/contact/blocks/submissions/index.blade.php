@@ -18,32 +18,9 @@
 
         <div class="accordion-body">
 
-          <div class="table-responsive">
-            <table class="table table-hover align-middle">
-                <thead>
-                <tr>
-                    <th>Sección/Área</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Localidad</th>
-                    <th>Celular</th>
-                    <th>Email</th>
-                    <th>Rol</th>
-                    <th>Mensaje</th>
-                </tr>
-                </thead>
-
-                <tbody>               
-                    <tr>
-                        <td colspan="8" class="text-center text-muted py-4">
-                            <i class="bi bi-inbox fs-1 d-block mb-2"></i>
-                            <p class="mb-0">No hay contactos todavía.</p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            </div>
-
+          @include('admin.sections.contact.blocks.submissions.table', [
+            'submissions' => $submissions
+          ])
 
         </div>
       </div>

@@ -6,8 +6,7 @@
             method="POST"
             action=""
             data-action-template="{{ route('admin.configuration.alliances.update', '__ID__') }}"
-            enctype="multipart/form-data"
-            novalidate>
+            enctype="multipart/form-data">
         @csrf
         @method('PUT')
 

@@ -10,8 +10,7 @@
 
       <form method="POST"
             action="{{ route('admin.configuration.subcategories.store') }}"
-            enctype="multipart/form-data"
-            novalidate>
+            enctype="multipart/form-data">
         @csrf
 
         <div class="modal-body">

@@ -12,9 +12,7 @@
                 method="POST"
                 action="{{ route('admin.configuration.auctions.text.update', $auctionText) }}"
                 data-action-template="{{ route('admin.configuration.auctions.text.update', $auctionText) }}"
-                enctype="multipart/form-data"
-                novalidate
-            >
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
