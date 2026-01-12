@@ -22,10 +22,8 @@ class ApiProductController extends Controller
             });
         }
 
-        // Orden (hoy simple, mañana expandible)
+        /*
         match ($request->get('sort')) {
-            'price_asc'  => $query->orderBy('price'),
-            'price_desc' => $query->orderByDesc('price'),
             'recent'     => $query->orderByDesc('date'),
             default      => $query->orderByDesc('sales'),
         };
@@ -33,6 +31,9 @@ class ApiProductController extends Controller
         $products = $query->paginate(
             perPage: $request->integer('per_page', 6)
         );
+        */
+
+        $products = $query->get();
 
         return ProductResource::collection($products);
     }
