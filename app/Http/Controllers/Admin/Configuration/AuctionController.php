@@ -16,7 +16,17 @@ class AuctionController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('image')) {
-            $data['image_path'] = $request->file('image')->store('auctions', 'images');
+
+            $file = $request->file('image');
+            $filename = $file->hashName();
+            $directory = 'auctions';
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $data['image_path'] = $fullPath;
+            }
         }
 
         Auction::create($data);
@@ -48,8 +58,16 @@ class AuctionController extends Controller
                 Storage::disk('images')->delete($auction->image_path);
             }
 
-            $auction->image_path = $request->file('image')
-                ->store('auctions', 'images');
+            $file = $request->file('image');
+            $filename = $file->hashName();
+            $directory = 'auctions';
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $auction->image_path = $fullPath;
+            }  
         }
 
         $auction->save();

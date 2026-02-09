@@ -15,10 +15,17 @@ class AuctionTypeController extends Controller
     {
         $data = $request->validated();
 
-        // Upload icono si existe
         if ($request->hasFile('icon')) {
-            $data['icon_path'] = $request->file('icon')
-                ->store('auction-types', 'public');
+            $file = $request->file('icon');
+            $filename = $file->hashName();
+            $directory = 'auction-types';
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $data['icon_path'] = $fullPath;
+            } 
         }
 
         AuctionType::create($data);
@@ -32,14 +39,21 @@ class AuctionTypeController extends Controller
     ): RedirectResponse {
         $data = $request->validated();
 
-        // Reemplazo de icono
         if ($request->hasFile('icon')) {
             if ($auctionType->icon_path) {
-                Storage::disk('public')->delete($auctionType->icon_path);
+                Storage::disk('images')->delete($auctionType->icon_path);
             }
 
-            $data['icon_path'] = $request->file('icon')
-                ->store('auction-types', 'public');
+            $file = $request->file('icon');
+            $filename = $file->hashName();
+            $directory = 'auction-types';
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $data['icon_path'] = $fullPath;
+            } 
         }
 
         $auctionType->update($data);

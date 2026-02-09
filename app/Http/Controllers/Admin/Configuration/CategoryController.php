@@ -16,14 +16,21 @@ class CategoryController extends Controller
     {
         $data = $request->validated();
 
-        $category = new Category($data);
-
         if ($request->hasFile('icon')) {
-            $category->icon_path = $request->file('icon')
-                ->store('categories', 'images');
+            
+            $file = $request->file('icon');
+            $filename = $file->hashName();
+            $directory = 'categories';
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $data['icon_path'] = $fullPath;
+            } 
         }
 
-        $category->save();
+        $category = new Category($data);
 
         return redirect()
             ->route('admin.configuration.index')
@@ -33,18 +40,25 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category): RedirectResponse
     {
         $data = $request->validated();
-        $category->fill($data);
 
         if ($request->hasFile('icon')) {
             if ($category->icon_path) {
                 Storage::disk('images')->delete($category->icon_path);
             }
 
-            $category->icon_path = $request->file('icon')
-                ->store('categories', 'images');
+            $file = $request->file('icon');
+            $filename = $file->hashName();
+            $directory = 'categories';
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $data['icon_path'] = $fullPath;
+            } 
         }
 
-        $category->save();
+        $category->update($data);
 
         return redirect()
             ->route('admin.configuration.index')

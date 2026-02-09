@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('reports', function (Blueprint $table) {
-            $table->string('image_path', 1024)->after('link');
             $table->string('alt', 125)->after('image_path');
         });
     }
@@ -23,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('reports', function (Blueprint $table) {
-            $table->dropColumn(['image_path', 'alt']);
+            $table->dropColumn(['alt']);
         });
     }
 };

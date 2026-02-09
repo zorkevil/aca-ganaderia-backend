@@ -16,14 +16,21 @@ class SubcategoryController extends Controller
     {
         $data = $request->validated();
 
-        $subcategory = new Subcategory($data);
-
         if ($request->hasFile('icon')) {
-            $subcategory->icon_path = $request->file('icon')
-                ->store('subcategories', 'images');
+            
+            $file = $request->file('icon');
+            $filename = $file->hashName();
+            $directory = 'subcategories';
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $data['icon_path'] = $fullPath;
+            } 
         }
 
-        $subcategory->save();
+        $subcategory = new Subcategory($data);
 
         return redirect()
             ->route('admin.configuration.index')
@@ -33,18 +40,25 @@ class SubcategoryController extends Controller
     public function update(UpdateSubcategoryRequest $request, Subcategory $subcategory): RedirectResponse
     {
         $data = $request->validated();
-        $subcategory->fill($data);
 
         if ($request->hasFile('icon')) {
             if ($subcategory->icon_path) {
                 Storage::disk('images')->delete($subcategory->icon_path);
             }
 
-            $subcategory->icon_path = $request->file('icon')
-                ->store('subcategories', 'images');
+            $file = $request->file('icon');
+            $filename = $file->hashName();
+            $directory = 'subcategories';
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $data['icon_path'] = $fullPath;
+            } 
         }
 
-        $subcategory->save();
+        $subcategory->update($data);
 
         return redirect()
             ->route('admin.configuration.index')

@@ -12,15 +12,23 @@ class AllianceController extends Controller
 {
     public function store(StoreAllianceRequest $request)
     {
-        $path = $request->file('icon')->store('alliances', 'public');
+        $data = $request->validated();
 
-        Alliance::create([
-            'icon_path' => $path,
-            'name'      => $request->name,
-            'alt'       => $request->alt,
-            'link'      => $request->link,
-            'is_active' => $request->boolean('is_active'),
-        ]);
+        if ($request->hasFile('icon')) {
+
+            $file = $request->file('icon');
+            $filename = $file->hashName();
+            $directory = 'alliances';
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $data['icon_path'] = $fullPath;
+            } 
+        }
+
+        Alliance::create($data);
 
         return redirect()
             ->back()
@@ -33,8 +41,20 @@ class AllianceController extends Controller
         $data['is_active'] = $request->boolean('is_active');
 
         if ($request->hasFile('icon')) {
-            Storage::disk('public')->delete($alliance->icon_path);
-            $data['icon_path'] = $request->file('icon')->store('alliances', 'public');
+            if ($alliance->icon_path) {
+                Storage::disk('images')->delete($alliance->icon_path);
+            }
+
+            $file = $request->file('icon');
+            $filename = $file->hashName();
+            $directory = 'alliances';
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $data['icon_path'] = $fullPath;
+            } 
         }
 
         $alliance->update($data);
@@ -46,7 +66,9 @@ class AllianceController extends Controller
 
     public function destroy(Alliance $alliance)
     {
-        Storage::disk('public')->delete($alliance->icon_path);
+        if ($alliance->icon_path) {
+            Storage::disk('images')->delete($alliance->icon_path);
+        }
         $alliance->delete();
 
         return redirect()

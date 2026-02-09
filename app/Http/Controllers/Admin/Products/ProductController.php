@@ -65,8 +65,16 @@ class ProductController extends Controller
         $product = new Product($data);
 
         if ($request->hasFile('image')) {
-            $product->image_path = $request->file('image')
-                ->store('products', 'images');
+            $file = $request->file('image');
+            $filename = $file->hashName();
+            $directory = 'products';
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $product->image_path = $fullPath;
+            } 
         }
 
         $product->save();
@@ -85,10 +93,18 @@ class ProductController extends Controller
         if ($request->hasFile('image')) {
             if ($product->image_path) {
                 Storage::disk('images')->delete($product->image_path);
-            }
+            }            
 
-            $product->image_path = $request->file('image')
-                ->store('products', 'images');
+            $file = $request->file('image');
+            $filename = $file->hashName();
+            $directory = 'products';
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $product->image_path = $fullPath;
+            }   
         }
 
         $product->save();

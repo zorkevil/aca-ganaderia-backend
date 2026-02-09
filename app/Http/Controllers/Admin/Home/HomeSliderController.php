@@ -24,8 +24,17 @@ class HomeSliderController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $slider->image_path = $request->file('image')
-                ->store('home/sliders', 'images');
+
+            $file = $request->file('image');
+            $filename = $file->hashName();
+            $directory = 'home/sliders';
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $slider->image_path = $fullPath;
+            }  
         }
 
         $slider->save();
@@ -52,8 +61,16 @@ class HomeSliderController extends Controller
                 Storage::disk('images')->delete($homeSlider->image_path);
             }
 
-            $homeSlider->image_path = $request->file('image')
-                ->store('home/sliders', 'images');
+            $file = $request->file('image');
+            $filename = $file->hashName();
+            $directory = 'home/sliders';
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $homeSlider->image_path = $fullPath;
+            }         
         }
 
         $homeSlider->save();

@@ -61,8 +61,16 @@ class ReportController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $report->image_path = $request->file('image')
-                ->store('reports', 'images');
+            $file = $request->file('image');
+            $filename = $file->hashName();
+            $directory = 'reports';
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $report->image_path = $fullPath;
+            } 
         }
 
         $report->save();
@@ -87,10 +95,18 @@ class ReportController extends Controller
         if ($request->hasFile('image')) {
             if ($report->image_path) {
                 Storage::disk('images')->delete($report->image_path);
-            }
+            }        
 
-            $report->image_path = $request->file('image')
-                ->store('reports', 'images');
+            $file = $request->file('image');
+            $filename = $file->hashName();
+            $directory = 'reports';
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $report->image_path = $fullPath;
+            }   
         }
 
         $report->save();

@@ -18,13 +18,21 @@ class MainBannerController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('image')) {
-            // borra la anterior si existía
-            if ($banner->image_path && Storage::disk('public')->exists($banner->image_path)) {
-                Storage::disk('public')->delete($banner->image_path);
+
+            if ($banner->image_path && Storage::disk('images')->exists($banner->image_path)) {
+                Storage::disk('images')->delete($banner->image_path);
             }
 
-            // guarda la nueva
-            $data['image_path'] = $request->file('image')->store("banners/{$section}", 'public');
+            $file = $request->file('image');
+            $filename = $file->hashName();
+            $directory = "banners/{$section}";
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $$data['image_path'] = $fullPath;
+            }   
         }
 
         $banner->update([

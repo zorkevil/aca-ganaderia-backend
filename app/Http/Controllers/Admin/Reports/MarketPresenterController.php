@@ -23,10 +23,18 @@ class MarketPresenterController extends Controller
         if ($request->hasFile('image')) {
             if ($marketPresenter->image_path) {
                 Storage::disk('images')->delete($marketPresenter->image_path);
-            }
+            }      
 
-            $marketPresenter->image_path = $request->file('image')
-                ->store('market-presenter', 'images');
+            $file = $request->file('image');
+            $filename = $file->hashName();
+            $directory = 'market-presenter';
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $marketPresenter->image_path = $fullPath;
+            }  
         }
 
         $marketPresenter->save();

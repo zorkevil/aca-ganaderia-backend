@@ -16,8 +16,17 @@ class AuctionModalityController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('icon')) {
-            $data['icon_path'] = $request->file('icon')
-                ->store('auction-modalities', 'public');
+
+            $file = $request->file('icon');
+            $filename = $file->hashName();
+            $directory = 'auction-modalities';
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $data['icon_path'] = $fullPath;
+            } 
         }
 
         AuctionModality::create($data);
@@ -33,11 +42,19 @@ class AuctionModalityController extends Controller
 
         if ($request->hasFile('icon')) {
             if ($auctionModality->icon_path) {
-                Storage::disk('public')->delete($auctionModality->icon_path);
+                Storage::disk('images')->delete($auctionModality->icon_path);
             }
 
-            $data['icon_path'] = $request->file('icon')
-                ->store('auction-modalities', 'public');
+            $file = $request->file('icon');
+            $filename = $file->hashName();
+            $directory = 'auction-modalities';
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $data['icon_path'] = $fullPath;
+            } 
         }
 
         $auctionModality->update($data);

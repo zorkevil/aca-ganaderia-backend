@@ -23,8 +23,16 @@ class ServiceController extends Controller
         ]);
 
         if ($request->hasFile('icon')) {
-            $service->icon_path = $request->file('icon')
-                ->store('section-services', 'images');
+            $file = $request->file('icon');
+            $filename = $file->hashName();
+            $directory = 'section-services';
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $service->icon_path = $fullPath;
+            } 
         }
 
         $service->save();
@@ -41,8 +49,16 @@ class ServiceController extends Controller
                 Storage::disk('images')->delete($sectionService->icon_path);
             }
 
-            $sectionService->icon_path = $request->file('icon')
-                ->store('section-services', 'images');
+            $file = $request->file('icon');
+            $filename = $file->hashName();
+            $directory = 'section-services';
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $sectionService->icon_path = $fullPath;
+            }
         }
 
         $sectionService->update([

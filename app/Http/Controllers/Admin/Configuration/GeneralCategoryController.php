@@ -15,14 +15,21 @@ class GeneralCategoryController extends Controller
     {
         $data = $request->validated();
 
-        $generalCategory = new GeneralCategory($data);
-
         if ($request->hasFile('icon')) {
-            $generalCategory->icon_path = $request->file('icon')
-                ->store('general-categories', 'images');
+            
+            $file = $request->file('icon');
+            $filename = $file->hashName();
+            $directory = 'general-categories';
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $data['icon_path'] = $fullPath;
+            } 
         }
 
-        $generalCategory->save();
+        $generalCategory = new GeneralCategory($data);
 
         return redirect()
             ->route('admin.configuration.index')
@@ -32,18 +39,25 @@ class GeneralCategoryController extends Controller
     public function update(UpdateGeneralCategoryRequest $request, GeneralCategory $generalCategory): RedirectResponse
     {
         $data = $request->validated();
-        $generalCategory->fill($data);
 
         if ($request->hasFile('icon')) {
             if ($generalCategory->icon_path) {
                 Storage::disk('images')->delete($generalCategory->icon_path);
             }
 
-            $generalCategory->icon_path = $request->file('icon')
-                ->store('general-categories', 'images');
+            $file = $request->file('icon');
+            $filename = $file->hashName();
+            $directory = 'general-categories';
+
+            $file->storeAs($directory, $filename, 'images');
+
+            $fullPath = $directory . '/' . $filename;
+            if (Storage::disk('images')->exists($fullPath)) {
+                $data['icon_path'] = $fullPath;
+            } 
         }
 
-        $generalCategory->save();
+        $generalCategory->update($data);
         
         return redirect()
             ->route('admin.configuration.index')
