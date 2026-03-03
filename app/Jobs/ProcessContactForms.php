@@ -35,13 +35,13 @@ class ProcessContactForms implements ShouldQueue
 
         // Mapeo de secciones a emails
         $sectionEmails = [
-            'nutricion' => 'cjalil@acacoop.com.ar',
-            'sanidad' => 'jghirardi@gmail.com',
+            'nutricion' => 'aaghemo@acacoop.com.ar',
+            'sanidad' => 'bernardez@acacoop.com.ar',
             'hacienda' => 'rmiguez@acacoop.com.ar',
             'produccion' => 'aaghemo@acacoop.com.ar',
             'tambo' => 'gpujol@acacoop.com.ar',
             'carne' => 'aaghemo@acacoop.com.ar',
-            'proyecto_campo_ganadero' => 'alejandrolisyc@gmail.com'
+            'proyecto_campo_ganadero' => 'jkalbermatter@acacoop.com.ar'
         ];
 
         // Procesar cada formulario individualmente
