@@ -20,5 +20,6 @@ class ContactForm extends Model
         'area',
         'mensaje',
         'section',
+        'enviado'
     ];
 }
