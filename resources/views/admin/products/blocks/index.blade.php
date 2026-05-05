@@ -19,7 +19,7 @@
 
                 @include('admin.products.blocks.table', ['products' => $products])
 
-                <div class="mt-3 text-center d-flex gap-2 justify-content-center">
+                <div class="mt-3 text-center d-flex gap-2 justify-content-center flex-wrap">
                 <button type="button" class="btn btn-link"
                         data-bs-toggle="modal"
                         data-bs-target="#modalProductoNutricion">
@@ -33,6 +33,13 @@
                     <i class="bi bi-plus-circle me-1"></i>
                     Agregar Producto Sanidad
                 </button>
+
+                <button type="button" class="btn btn-link"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modalProductoIdentElectronica">
+                    <i class="bi bi-plus-circle me-1"></i>
+                    Agregar Producto Identificación Electrónica
+                </button>
                 </div>
 
             </div>
@@ -43,5 +50,7 @@
 
 @include('admin.products.blocks.modal-create-nutrition')
 @include('admin.products.blocks.modal-create-sanidad')
+@include('admin.products.blocks.modal-create-identificacion-electronica')
 @include('admin.products.blocks.modal-edit-nutrition')
 @include('admin.products.blocks.modal-edit-sanidad')
+@include('admin.products.blocks.modal-edit-identificacion-electronica')

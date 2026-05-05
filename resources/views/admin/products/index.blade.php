@@ -21,10 +21,12 @@
 
 {{-- BLOQUE: PRODUCTOS --}}
 @include('admin.products.blocks.index', [
-  'products' => $products, 
+  'products' => $products,
   'categoriesNutrition' => $categoriesNutrition,
   'categoriesSanidad' => $categoriesSanidad,
   'subcategoriesSanidad' => $subcategoriesSanidad,
+  'identificacionElectronicaCategoryId' => $identificacionElectronicaCategoryId,
+  'subcategoriesIdentElectronica' => $subcategoriesIdentElectronica,
 ])
 
 @endsection

@@ -30,6 +30,7 @@ class GeneralCategoryController extends Controller
         }
 
         $generalCategory = new GeneralCategory($data);
+        $generalCategory->save();
 
         return redirect()
             ->route('admin.configuration.index')

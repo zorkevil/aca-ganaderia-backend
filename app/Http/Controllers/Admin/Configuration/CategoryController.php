@@ -31,6 +31,7 @@ class CategoryController extends Controller
         }
 
         $category = new Category($data);
+        $category->save();
 
         return redirect()
             ->route('admin.configuration.index')

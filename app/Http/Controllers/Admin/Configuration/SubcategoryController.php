@@ -31,6 +31,7 @@ class SubcategoryController extends Controller
         }
 
         $subcategory = new Subcategory($data);
+        $subcategory->save();
 
         return redirect()
             ->route('admin.configuration.index')

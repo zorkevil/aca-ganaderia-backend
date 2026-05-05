@@ -25,6 +25,28 @@
     <i class="bi bi-pencil"></i>
   </button>
 
+@elseif ($product->category_id === $identificacionElectronicaCategoryId)
+
+  {{-- Editar Identificación Electrónica --}}
+  <button
+    class="btn btn-link p-1"
+    data-bs-toggle="modal"
+    data-bs-target="#modalEditarProductoIdentElectronica"
+    data-id="{{ $product->id }}"
+    data-name="{{ $product->name }}"
+    data-title="{{ $product->title }}"
+    data-subtitle="{{ $product->subtitle }}"
+    data-slug="{{ $product->slug }}"
+    data-sku="{{ $product->sku }}"
+    data-description="{{ $product->description }}"
+    data-image_alt="{{ $product->image_alt }}"
+    data-subcategory_id="{{ $product->subcategory_id }}"
+    data-date="{{ optional($product->date)->format('Y-m-d') }}"
+    data-is_active="{{ $product->is_active ? 1 : 0 }}"
+  >
+    <i class="bi bi-pencil"></i>
+  </button>
+
 @elseif ($product->general_category_id === $sanidadId)
 
   {{-- Editar Sanidad --}}

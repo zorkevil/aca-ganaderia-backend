@@ -1,3 +1,54 @@
+export function initEditProductoIdentElectronicaModal() {
+  const modal = document.getElementById('modalEditarProductoIdentElectronica');
+  const form  = document.getElementById('formEditarProductoIdentElectronica');
+
+  if (!modal || !form) return;
+
+  modal.addEventListener('show.bs.modal', (event) => {
+    const btn = event.relatedTarget;
+    if (!btn) return;
+
+    const id  = btn.dataset.id;
+    const tpl = form.dataset.actionTemplate;
+    if (id && tpl) {
+      form.action = tpl.replace('__ID__', id);
+    }
+
+    const setVal = (id, val) => {
+      const el = document.getElementById(id);
+      if (el) el.value = val ?? '';
+    };
+
+    setVal('editIdentElectronicaName', btn.dataset.name);
+    setVal('editIdentElectronicaTitle', btn.dataset.title);
+    setVal('editIdentElectronicaSubtitle', btn.dataset.subtitle);
+    setVal('editIdentElectronicaSlug', btn.dataset.slug);
+    setVal('editIdentElectronicaSku', btn.dataset.sku);
+    setVal('editIdentElectronicaDescription', btn.dataset.description);
+    setVal('editIdentElectronicaImageAlt', btn.dataset.image_alt);
+    setVal('editIdentElectronicaDate', btn.dataset.date);
+
+    const subcategory = document.getElementById('editIdentElectronicaSubcategory');
+    if (subcategory?.tomselect) {
+      subcategory.tomselect.setValue(btn.dataset.subcategory_id || '');
+    }
+
+    const active = document.getElementById('editIdentElectronicaIsActive');
+    if (active?.tomselect) {
+      active.tomselect.setValue(btn.dataset.is_active ?? '1');
+    }
+  });
+
+  modal.addEventListener('hidden.bs.modal', () => {
+    form.reset();
+
+    ['editIdentElectronicaSubcategory', 'editIdentElectronicaIsActive'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el?.tomselect) el.tomselect.clear();
+    });
+  });
+}
+
 export function initEditProductoNutricionModal() {
   const modal = document.getElementById('modalEditProductoNutricion');
   const form  = document.getElementById('formEditProductoNutricion');

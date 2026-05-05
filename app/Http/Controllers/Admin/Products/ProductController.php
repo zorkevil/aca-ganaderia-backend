@@ -37,6 +37,14 @@ class ProductController extends Controller
             ->orderBy('name')
             ->get();
 
+        // Categoría Identificación Electrónica (categoría hija de Sanidad)
+        $identElectronicaCategory = Category::where('slug', 'identificacion-electronica')->first();
+        $identificacionElectronicaCategoryId = $identElectronicaCategory?->id;
+
+        $subcategoriesIdentElectronica = $identElectronicaCategory
+            ? Subcategory::where('category_id', $identElectronicaCategory->id)->orderBy('name')->get()
+            : collect();
+
         // Listado de productos
         $products = Product::with([
                 'generalCategory',
@@ -53,7 +61,9 @@ class ProductController extends Controller
             'sanidadId',
             'categoriesNutrition',
             'categoriesSanidad',
-            'subcategoriesSanidad'
+            'subcategoriesSanidad',
+            'identificacionElectronicaCategoryId',
+            'subcategoriesIdentElectronica'
         ));
     }
 
