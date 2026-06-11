@@ -45,6 +45,14 @@ class ProductController extends Controller
             ? Subcategory::where('category_id', $identElectronicaCategory->id)->orderBy('name')->get()
             : collect();
 
+        // Categoría Semillas (categoría hija de Sanidad)
+        $semillasCategory = Category::where('slug', 'semillas')->first();
+        $semillasCategoryId = $semillasCategory?->id;
+
+        $subcategoriesSemillas = $semillasCategory
+            ? Subcategory::where('category_id', $semillasCategory->id)->orderBy('name')->get()
+            : collect();
+
         // Listado de productos
         $products = Product::with([
                 'generalCategory',
@@ -63,7 +71,9 @@ class ProductController extends Controller
             'categoriesSanidad',
             'subcategoriesSanidad',
             'identificacionElectronicaCategoryId',
-            'subcategoriesIdentElectronica'
+            'subcategoriesIdentElectronica',
+            'semillasCategoryId',
+            'subcategoriesSemillas'
         ));
     }
 

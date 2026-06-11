@@ -27,6 +27,8 @@
   'subcategoriesSanidad' => $subcategoriesSanidad,
   'identificacionElectronicaCategoryId' => $identificacionElectronicaCategoryId,
   'subcategoriesIdentElectronica' => $subcategoriesIdentElectronica,
+  'semillasCategoryId' => $semillasCategoryId,
+  'subcategoriesSemillas' => $subcategoriesSemillas,
 ])
 
 @endsection

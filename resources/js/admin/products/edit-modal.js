@@ -1,3 +1,102 @@
+import { hookSemillasSubcategory, populateSemillasEditFields, getGroupFromSelect, applyGroup } from './semillas-fields.js';
+
+export function initCreateProductoSemillasModal() {
+  const modal = document.getElementById('modalProductoSemillas');
+  if (!modal) return;
+
+  // Deshabilita todos los grupos desde el inicio (ninguno seleccionado)
+  applyGroup('createSemillasFields', null, false);
+
+  // Engancha el switch de subcategoría una vez que TomSelect ya está inicializado
+  hookSemillasSubcategory('createSemillasSubcategory', 'createSemillasFields');
+
+  // Al cerrar, limpia campos dinámicos
+  modal.addEventListener('hidden.bs.modal', () => {
+    applyGroup('createSemillasFields', null, true);
+
+    const subcategory = document.getElementById('createSemillasSubcategory');
+    if (subcategory?.tomselect) subcategory.tomselect.clear();
+
+    const isActive = modal.querySelector('[name="is_active"]');
+    if (isActive?.tomselect) isActive.tomselect.clear();
+  });
+}
+
+export function initEditProductoSemillasModal() {
+  const modal = document.getElementById('modalEditarProductoSemillas');
+  const form  = document.getElementById('formEditarProductoSemillas');
+
+  if (!modal || !form) return;
+
+  hookSemillasSubcategory('editSemillasSubcategory', 'editSemillasFields');
+
+  modal.addEventListener('show.bs.modal', (event) => {
+    const btn = event.relatedTarget;
+    if (!btn) return;
+
+    const id  = btn.dataset.id;
+    const tpl = form.dataset.actionTemplate;
+    if (id && tpl) form.action = tpl.replace('__ID__', id);
+
+    const setVal = (elId, val) => {
+      const el = document.getElementById(elId);
+      if (el) el.value = val ?? '';
+    };
+
+    setVal('editSemillasName',        btn.dataset.name);
+    setVal('editSemillasTitle',       btn.dataset.title);
+    setVal('editSemillasSubtitle',    btn.dataset.subtitle);
+    setVal('editSemillasSlug',        btn.dataset.slug);
+    setVal('editSemillasSku',         btn.dataset.sku);
+    setVal('editSemillasDescription', btn.dataset.description);
+    setVal('editSemillasImageAlt',    btn.dataset.image_alt);
+    setVal('editSemillasDate',        btn.dataset.date);
+
+    const subcategoryEl = document.getElementById('editSemillasSubcategory');
+    if (subcategoryEl?.tomselect) {
+      subcategoryEl.tomselect.setValue(btn.dataset.subcategory_id || '');
+    }
+
+    const activeEl = document.getElementById('editSemillasIsActive');
+    if (activeEl?.tomselect) {
+      activeEl.tomselect.setValue(btn.dataset.is_active ?? '1');
+    }
+
+    // Detecta el grupo por la opción seleccionada y muestra los campos correspondientes
+    const group = getGroupFromSelect(subcategoryEl, btn.dataset.subcategory_id || '');
+    applyGroup('editSemillasFields', group, false);
+
+    populateSemillasEditFields(group, {
+      ciclo:               btn.dataset.ciclo,
+      aptitud_de_uso:      btn.dataset.aptitud_de_uso,
+      contenido_de_tanino: btn.dataset.contenido_de_tanino,
+      calidad_de_ms:       btn.dataset.calidad_de_ms,
+      perfil_sanitario:    btn.dataset.perfil_sanitario,
+      altura_cm:           btn.dataset.altura_cm,
+      despeje_de_panoja:   btn.dataset.despeje_de_panoja,
+      bmr:                 btn.dataset.bmr,
+      porcentaje_de_panoja:btn.dataset.porcentaje_de_panoja,
+      zona_de_adaptacion:  btn.dataset.zona_de_adaptacion,
+      densidad_de_siembra: btn.dataset.densidad_de_siembra,
+      tecnologia:          btn.dataset.tecnologia,
+      madurez_relativa:    btn.dataset.madurez_relativa,
+      comportamiento_a_vuelco_y_quebrado: btn.dataset.comportamiento_a_vuelco_y_quebrado,
+      velocidad_de_secado: btn.dataset.velocidad_de_secado,
+      textura_de_grano:    btn.dataset.textura_de_grano,
+    });
+  });
+
+  modal.addEventListener('hidden.bs.modal', () => {
+    form.reset();
+    applyGroup('editSemillasFields', null, true);
+
+    ['editSemillasSubcategory', 'editSemillasIsActive'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el?.tomselect) el.tomselect.clear();
+    });
+  });
+}
+
 export function initEditProductoIdentElectronicaModal() {
   const modal = document.getElementById('modalEditarProductoIdentElectronica');
   const form  = document.getElementById('formEditarProductoIdentElectronica');

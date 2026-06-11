@@ -40,6 +40,13 @@
                     <i class="bi bi-plus-circle me-1"></i>
                     Agregar Producto Identificación Electrónica
                 </button>
+
+                <button type="button" class="btn btn-link"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modalProductoSemillas">
+                    <i class="bi bi-plus-circle me-1"></i>
+                    Agregar Producto Semillas
+                </button>
                 </div>
 
             </div>
@@ -51,6 +58,8 @@
 @include('admin.products.blocks.modal-create-nutrition')
 @include('admin.products.blocks.modal-create-sanidad')
 @include('admin.products.blocks.modal-create-identificacion-electronica')
+@include('admin.products.blocks.modal-create-semillas')
 @include('admin.products.blocks.modal-edit-nutrition')
 @include('admin.products.blocks.modal-edit-sanidad')
 @include('admin.products.blocks.modal-edit-identificacion-electronica')
+@include('admin.products.blocks.modal-edit-semillas')
