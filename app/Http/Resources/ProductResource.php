@@ -37,6 +37,24 @@ class ProductResource extends JsonResource
             'dosage' => $this->dosage,
             'senasa' => $this->senasa,
             'especieAnimal' => $this->especie_animal,
+			
+			// Semillas
+			'aptitud_de_uso' => $this->aptitud_de_uso,
+			'ciclo' => $this->ciclo,
+			'contenido_de_tanino' => $this->contenido_de_tanino,
+			'altura_cm' => $this->altura_cm,
+			'despeje_de_panoja' => $this->despeje_de_panoja,
+			'calidad_de_ms' => $this->calidad_de_ms,
+			'perfil_sanitario' => $this->perfil_sanitario,
+			'bmr' => $this->bmr,
+			'porcentaje_de_panoja' => $this->porcentaje_de_panoja,
+			'zona_de_adaptacion' => $this->zona_de_adaptacion,
+			'densidad_de_siembra' => $this->densidad_de_siembra,
+			'tecnologia' => $this->tecnologia,
+			'madurez_relativa' => $this->madurez_relativa,
+			'comportamiento_a_vuelco_y_quebrado' => $this->comportamiento_a_vuelco_y_quebrado,
+			'velocidad_de_secado' => $this->velocidad_de_secado,
+			'textura_de_grano' => $this->textura_de_grano,
 
             // Media
             'image' => $this->image_url,
