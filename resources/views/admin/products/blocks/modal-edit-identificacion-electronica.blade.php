@@ -17,7 +17,7 @@
           @csrf
           @method('PUT')
 
-          <input type="hidden" name="general_category_id" value="{{ $sanidadId }}">
+          <input type="hidden" name="general_category_id" value="{{ $identificacionElectronicaGeneralCategoryId }}">
           <input type="hidden" name="category_id" value="{{ $identificacionElectronicaCategoryId }}">
 
           {{-- Nombre comercial --}}

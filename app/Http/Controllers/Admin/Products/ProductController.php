@@ -37,17 +37,19 @@ class ProductController extends Controller
             ->orderBy('name')
             ->get();
 
-        // Categoría Identificación Electrónica (categoría hija de Sanidad)
+        // Categoría Identificación Electrónica
         $identElectronicaCategory = Category::where('slug', 'identificacion-electronica')->first();
         $identificacionElectronicaCategoryId = $identElectronicaCategory?->id;
+        $identificacionElectronicaGeneralCategoryId = $identElectronicaCategory?->general_category_id;
 
         $subcategoriesIdentElectronica = $identElectronicaCategory
             ? Subcategory::where('category_id', $identElectronicaCategory->id)->orderBy('name')->get()
             : collect();
 
-        // Categoría Semillas (categoría hija de Sanidad)
+        // Categoría Semillas
         $semillasCategory = Category::where('slug', 'semillas')->first();
         $semillasCategoryId = $semillasCategory?->id;
+        $semillasGeneralCategoryId = $semillasCategory?->general_category_id;
 
         $subcategoriesSemillas = $semillasCategory
             ? Subcategory::where('category_id', $semillasCategory->id)->orderBy('name')->get()
@@ -71,8 +73,10 @@ class ProductController extends Controller
             'categoriesSanidad',
             'subcategoriesSanidad',
             'identificacionElectronicaCategoryId',
+            'identificacionElectronicaGeneralCategoryId',
             'subcategoriesIdentElectronica',
             'semillasCategoryId',
+            'semillasGeneralCategoryId',
             'subcategoriesSemillas'
         ));
     }
