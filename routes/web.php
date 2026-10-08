@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Configuration\SubcategoryController;
 use App\Http\Controllers\Admin\Configuration\MainBannerController;
 use App\Http\Controllers\Admin\Configuration\ServiceController;
 use App\Http\Controllers\Admin\Configuration\ContactController;
+use App\Http\Controllers\Admin\Configuration\ContactFormRecipientController;
 use App\Http\Controllers\Admin\Sections\NutritionController;
 use App\Http\Controllers\Admin\Sections\SanidadController;
 use App\Http\Controllers\Admin\Sections\ProductionController;
@@ -129,6 +130,16 @@ Route::middleware(['auth'])
 
                 Route::delete('/contacts/{contact}', [ContactController::class, 'destroy'])
                     ->name('contacts.destroy');
+
+                // EMAILS DE FORMULARIOS DE CONTACTO
+                Route::post('/contact-form-recipients', [ContactFormRecipientController::class, 'store'])
+                    ->name('contact-form-recipients.store');
+
+                Route::put('/contact-form-recipients/{contactFormRecipient}', [ContactFormRecipientController::class, 'update'])
+                    ->name('contact-form-recipients.update');
+
+                Route::delete('/contact-form-recipients/{contactFormRecipient}', [ContactFormRecipientController::class, 'destroy'])
+                    ->name('contact-form-recipients.destroy');
 
                 // TEXTO ALIANZAS
                 Route::put(

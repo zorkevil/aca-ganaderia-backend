@@ -2,39 +2,35 @@
 
 namespace App\Models;
 
+use App\Enums\ContactFormSection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Contact extends Model
+class ContactFormRecipient extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'phone',
-        'general_category_id',
+        'email',
+        'section',
         'is_active',
     ];
 
     protected $casts = [
+        'section' => ContactFormSection::class,
         'is_active' => 'boolean',
     ];
-
-    public function generalCategory()
-    {
-        return $this->belongsTo(GeneralCategory::class);
-    }
 
     public function scopeActive($query)
     {
         return $query->where('is_active', true);
     }
 
-    // Solo puede haber un contacto activo por sección
-    public static function activeInSection(int $generalCategoryId, ?int $exceptId = null): ?self
+    // Solo puede haber un email activo por sección
+    public static function activeInSection(string $section, ?int $exceptId = null): ?self
     {
         return static::active()
-            ->where('general_category_id', $generalCategoryId)
+            ->where('section', $section)
             ->when($exceptId, fn ($q) => $q->whereKeyNot($exceptId))
             ->first();
     }

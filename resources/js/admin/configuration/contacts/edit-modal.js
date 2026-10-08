@@ -1,18 +1,37 @@
+import { readSectionData, filterSectionOptions } from './section-filter';
+
 export default function initEditContactModal() {
   const modal = document.getElementById('modalEditContact');
   const form = document.getElementById('editContactForm');
 
   if (!modal || !form) return;
 
+  const data = readSectionData(modal);
+  const generalSelect = document.getElementById('editGeneralCategoryContact');
+  const activeSelect = document.getElementById('editIsActiveContact');
+  const warning = document.getElementById('editContactActiveWarning');
+
+  let contactId = null;
+
+  const applyFilter = () => {
+    filterSectionOptions(generalSelect, data, {
+      onlyAvailable: activeSelect?.value === '1',
+      contactId,
+    });
+  };
+
+  activeSelect?.addEventListener('change', applyFilter);
+
   modal.addEventListener('show.bs.modal', (event) => {
     const btn = event.relatedTarget;
     if (!btn) return;
 
+    contactId = btn.dataset.id;
+
     // 1) action dinámica
-    const id = btn.dataset.id;
     const tpl = form.dataset.actionTemplate;
-    if (id && tpl) {
-      form.action = tpl.replace('__ID__', id);
+    if (contactId && tpl) {
+      form.action = tpl.replace('__ID__', contactId);
     }
 
     const setFieldValue = (id, value) => {
@@ -24,42 +43,34 @@ export default function initEditContactModal() {
     setFieldValue('editNameContact', btn.dataset.name);
     setFieldValue('editPhoneContact', btn.dataset.phone);
 
-    // 3) sección (tomselect)
-    const generalSelect = document.getElementById('editGeneralCategoryContact');
-    if (generalSelect) {
-      const v = btn.dataset.general_category_id || '';
-      generalSelect.value = v;
-
-      if (generalSelect.tomselect) {
-        // tomselect espera string
-        generalSelect.tomselect.setValue(v ? String(v) : '');
-      }
+    // 3) estado (tomselect), antes que la sección porque define qué secciones se muestran
+    const isActive = btn.dataset.is_active !== undefined ? String(btn.dataset.is_active) : '1';
+    if (activeSelect) {
+      activeSelect.value = isActive;
+      activeSelect.tomselect?.setValue(isActive);
     }
 
-    // 4) estado (tomselect)
-    const activeSelect = document.getElementById('editIsActiveContact');
-    if (activeSelect) {
-      const v = btn.dataset.is_active !== undefined ? btn.dataset.is_active : '1';
-      activeSelect.value = v;
+    // 4) sección (tomselect)
+    const sectionId = btn.dataset.general_category_id || '';
+    applyFilter();
+    generalSelect?.tomselect?.setValue(sectionId);
 
-      if (activeSelect.tomselect) {
-        activeSelect.tomselect.setValue(String(v));
-      }
+    // 5) aviso si la sección ya tiene otro contacto activo
+    const active = data.activeBySection[sectionId];
+    const blocked = isActive === '0' && active && String(active.id) !== String(contactId);
+    if (warning) {
+      warning.classList.toggle('d-none', !blocked);
+      const nameEl = warning.querySelector('[data-active-name]');
+      if (nameEl) nameEl.textContent = blocked ? active.name : '';
     }
   });
 
   modal.addEventListener('hidden.bs.modal', () => {
     form.reset();
+    contactId = null;
+    warning?.classList.add('d-none');
 
-    // opcional: limpiar tomselect
-    const generalSelect = document.getElementById('editGeneralCategoryContact');
-    if (generalSelect?.tomselect) {
-      generalSelect.tomselect.clear();
-    }
-
-    const activeSelect = document.getElementById('editIsActiveContact');
-    if (activeSelect?.tomselect) {
-      activeSelect.tomselect.clear();
-    }
+    generalSelect?.tomselect?.clear();
+    activeSelect?.tomselect?.clear();
   });
 }

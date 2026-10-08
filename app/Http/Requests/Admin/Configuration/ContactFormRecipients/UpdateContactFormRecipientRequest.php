@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Requests\Admin\Configuration\Contacts;
+namespace App\Http\Requests\Admin\Configuration\ContactFormRecipients;
 
-use App\Models\Contact;
+use App\Enums\ContactFormSection;
+use App\Models\ContactFormRecipient;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Validator;
 
-class UpdateContactRequest extends FormRequest
+class UpdateContactFormRecipientRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -16,9 +18,8 @@ class UpdateContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'max:50'],
-            'general_category_id' => ['required', 'integer', 'exists:general_categories,id'],
+            'email' => ['required', 'email', 'max:255'],
+            'section' => ['required', Rule::enum(ContactFormSection::class)],
             'is_active' => ['required', 'boolean'],
         ];
     }
@@ -31,12 +32,12 @@ class UpdateContactRequest extends FormRequest
                     return;
                 }
 
-                $current = Contact::activeInSection((int) $this->input('general_category_id'), $this->contact->id);
+                $current = ContactFormRecipient::activeInSection($this->input('section'), $this->contactFormRecipient->id);
 
                 if ($current) {
                     $validator->errors()->add(
-                        'general_category_id',
-                        "La sección {$current->generalCategory->name} ya tiene un contacto activo ({$current->name}). Desactivalo primero."
+                        'section',
+                        "La sección {$current->section->label()} ya tiene un email activo ({$current->email}). Desactivalo primero."
                     );
                 }
             },

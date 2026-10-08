@@ -12,7 +12,7 @@ class ApiContactController extends Controller
     public function index(): JsonResponse
     {
         $contacts = Contact::with('generalCategory')
-            ->where('is_active', true)
+            ->active()
             ->get();
 
         return response()->json([

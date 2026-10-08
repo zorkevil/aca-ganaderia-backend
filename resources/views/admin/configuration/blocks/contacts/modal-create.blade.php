@@ -1,4 +1,6 @@
-<div class="modal fade" id="modalCreateContact" tabindex="-1">
+<div class="modal fade" id="modalCreateContact" tabindex="-1"
+     data-sections='@json($generalCategories->map->only(['id', 'name'])->values())'
+     data-active-by-section='@json($activeContactsBySection)'>
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
 
@@ -8,6 +10,7 @@
       </div>
 
       <form method="POST"
+            id="createContactForm"
             action="{{ route('admin.configuration.contacts.store') }}">
         @csrf
 

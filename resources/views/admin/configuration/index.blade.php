@@ -37,4 +37,8 @@
   {{-- BLOQUE: CONTACTOS DE WHATSAPP --}}
   @include('admin.configuration.blocks.contacts.index', ['contacts' => $contacts])
 
+  {{-- BLOQUE: EMAILS DE FORMULARIOS DE CONTACTO --}}
+  {{-- Oculto por ahora: el job sigue usando los emails hardcodeados (ver ProcessContactForms) --}}
+  {{-- @include('admin.configuration.blocks.contact_form_recipients.index') --}}
+
 @endsection

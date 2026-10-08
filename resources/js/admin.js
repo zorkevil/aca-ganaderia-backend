@@ -14,6 +14,9 @@ import initEditSubcategoryModal from './admin/configuration/subcategories/edit-m
 import initEditMainBannerModal from './admin/configuration/main-banner/edit-modal';
 import initEditNutritionServiceModal from './admin/configuration/service/edit-modal';
 import initEditContactModal from './admin/configuration/contacts/edit-modal';
+import initCreateContactModal from './admin/configuration/contacts/create-modal';
+import initCreateContactFormRecipientModal from './admin/configuration/contact-form-recipients/create-modal';
+import initEditContactFormRecipientModal from './admin/configuration/contact-form-recipients/edit-modal';
 import { initCreateProductoSemillasModal, initEditProductoSemillasModal, initEditProductoIdentElectronicaModal, initEditProductoNutricionModal, initEditProductoSanidadModal } from './admin/products/edit-modal';
 import { initEditAllianceModal, initEditAllianceTextModal } from './admin/configuration/alliances/edit-modal';
 import initEditAuctionModalityModal from './admin/configuration/auction-modality/edit-modal';
@@ -42,7 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initEditProductoIdentElectronicaModal();
   initEditProductoNutricionModal();
   initEditProductoSanidadModal();
+  initCreateContactModal();
   initEditContactModal();
+  initCreateContactFormRecipientModal();
+  initEditContactFormRecipientModal();
   initEditAllianceModal();
   initEditAllianceTextModal();
   initEditAuctionModalityModal();

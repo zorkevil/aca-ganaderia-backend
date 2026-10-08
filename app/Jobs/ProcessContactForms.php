@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\ContactForm;
+// use App\Models\ContactFormRecipient;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -34,6 +35,7 @@ class ProcessContactForms implements ShouldQueue
         Log::info("Procesando {$contactForms->count()} formularios de contacto");
 
         // Mapeo de secciones a emails
+        // Pendiente: reemplazar por los emails cargados en Configuración (tabla contact_form_recipients)
         $sectionEmails = [
             'nutricion' => 'aaghemo@acacoop.com.ar',
             'sanidad' => 'bernardez@acacoop.com.ar',
@@ -55,6 +57,16 @@ class ProcessContactForms implements ShouldQueue
                     Log::warning("Sección desconocida: {$form->section} para el formulario ID {$form->id}");
                     continue;
                 }
+
+                // Desde la base (feature oculto por ahora, ver contact_form_recipients)
+                // $destinatario = $form->section
+                //     ? ContactFormRecipient::activeInSection($form->section)?->email
+                //     : null;
+                //
+                // if (!$destinatario) {
+                //     Log::warning("No hay email activo para la sección {$form->section} (formulario ID {$form->id})");
+                //     continue;
+                // }
 
                 // Enviar el email
                 Mail::send('emails.contact-form', ['form' => $form], function ($message) use ($form, $destinatario) {

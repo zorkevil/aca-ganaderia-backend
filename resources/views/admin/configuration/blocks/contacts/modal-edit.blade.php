@@ -1,4 +1,6 @@
-<div class="modal fade" id="modalEditContact" tabindex="-1">
+<div class="modal fade" id="modalEditContact" tabindex="-1"
+     data-sections='@json($generalCategories->map->only(['id', 'name'])->values())'
+     data-active-by-section='@json($activeContactsBySection)'>
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
 
@@ -15,6 +17,12 @@
         @method('PUT')
 
         <div class="modal-body">
+
+          <div class="alert alert-info d-none" id="editContactActiveWarning" role="alert">
+            <i class="bi bi-info-circle me-1"></i>
+            Para activar este contacto, primero desactivá a
+            <strong data-active-name></strong>, que es el contacto activo de esta sección.
+          </div>
 
           <div class="mb-3 form-floating">
             <input type="text" class="form-control"
